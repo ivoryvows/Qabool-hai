@@ -1,1 +1,1739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Ali & Fatema | Wedding Invitation</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    padding:0;
+    background:
+        linear-gradient(-45deg,#f7f4ee,#f3ede2,#e6dcc8,#f5efe6);
+    background-size:400% 400%;
+    animation:gradientMove 15s ease infinite;
+    color:#594a2b;
+    overflow-x:hidden;
+    font-family:'Playfair Display',serif;
+}
+
+@keyframes gradientMove{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+/* =========================================================
+   FALLING PETALS
+========================================================= */
+
+#petals{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    z-index:999;
+}
+
+/* =========================================================
+   MUSIC BUTTON
+========================================================= */
+
+#musicButton{
+    position:fixed;
+    right:16px;
+    bottom:18px;
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    border:1px solid rgba(184,151,104,.7);
+    background:rgba(253,251,247,.88);
+    color:#713434;
+    font-size:17px;
+    z-index:10000;
+    box-shadow:0 3px 15px rgba(100,70,40,.15);
+    cursor:pointer;
+}
+
+/* =========================================================
+   COMMON SECTION
+========================================================= */
+
+.section{
+    width:100%;
+    min-height:100vh;
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:70px 18px;
+    overflow:hidden;
+}
+
+.section-inner{
+    width:min(100%,900px);
+    position:relative;
+    z-index:2;
+}
+
+/* =========================================================
+   OPENING ENVELOPE
+========================================================= */
+
+#opening{
+    position:fixed;
+    inset:0;
+    z-index:9000;
+    background:#f7f4ee;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:opacity 1.2s ease, visibility 1.2s ease;
+}
+
+#opening.hide{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+}
+
+.envelope-wrap{
+    width:100%;
+    height:100%;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    background:#f7f4ee;
+}
+
+.envelope-video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+.open-overlay{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    padding-bottom:12vh;
+    background:linear-gradient(
+        to bottom,
+        transparent 45%,
+        rgba(45,25,15,.28)
+    );
+}
+
+.open-button{
+    border:1px solid rgba(255,255,255,.85);
+    background:rgba(253,251,247,.92);
+    color:#713434;
+    padding:13px 28px;
+    border-radius:40px;
+    font-family:'Cinzel',serif;
+    font-size:13px;
+    letter-spacing:2px;
+    cursor:pointer;
+    box-shadow:0 5px 25px rgba(50,30,15,.18);
+}
+
+/* =========================================================
+   WELCOME VIDEO
+========================================================= */
+
+.video-section{
+    min-height:auto;
+    padding:35px 18px;
+}
+
+.video-frame{
+    width:min(100%,900px);
+    margin:auto;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 8px 35px rgba(100,70,40,.16);
+    border:1px solid rgba(184,151,104,.5);
+    background:#fdfbf7;
+}
+
+.video-frame video{
+    width:100%;
+    height:auto;
+    display:block;
+}
+
+/* =========================================================
+   BEAUTIFUL BEGINNING
+========================================================= */
+
+.beginning-card{
+    width:min(100%,520px);
+    min-height:560px;
+    background:#fdfbf7;
+    border:2px solid #b89768;
+    border-radius:16px;
+    box-shadow:0 8px 30px rgba(184,151,104,.18);
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:55px 35px;
+}
+
+.square-frame{
+    position:absolute;
+    top:20px;
+    left:20px;
+    right:20px;
+    bottom:20px;
+    border:2px solid #dcd0bb;
+    border-radius:12px;
+    pointer-events:none;
+    z-index:0;
+}
+
+.beginning-content{
+    position:relative;
+    z-index:2;
+    text-align:center;
+}
+
+.diamond-divider{
+    color:#b89768;
+    font-size:15px;
+    margin-bottom:22px;
+}
+
+.main-message{
+    font-family:'Playfair Display',serif;
+    font-style:italic;
+    font-size:24px;
+    color:#5c4735;
+    line-height:1.4;
+    margin-bottom:28px;
+}
+
+.couple-names{
+    font-family:'Great Vibes',cursive;
+    font-size:54px;
+    color:#594a2b;
+    margin:0 0 28px;
+    font-weight:normal;
+}
+
+.names-and{
+    font-size:32px;
+    vertical-align:middle;
+    margin:0 12px;
+}
+
+.footer-details{
+    font-size:13px;
+    color:#8c7853;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-family:'Cinzel',serif;
+    margin-top:25px;
+    font-weight:600;
+}
+
+.corner-flower-tl,
+.corner-flower-br{
+    position:absolute;
+    pointer-events:none;
+    opacity:.95;
+    z-index:3;
+    animation:floatFlower 4s ease-in-out infinite;
+}
+
+.corner-flower-tl{
+    top:-10px;
+    left:-10px;
+    width:115px;
+}
+
+.corner-flower-br{
+    bottom:-10px;
+    right:-10px;
+    width:125px;
+    animation-delay:2s;
+}
+
+@keyframes floatFlower{
+    0%{transform:translateY(0) rotate(0)}
+    50%{transform:translateY(-3px) rotate(1deg)}
+    100%{transform:translateY(0) rotate(0)}
+}
+
+/* =========================================================
+   SCRATCH SECTION
+========================================================= */
+
+.scratch-section{
+    min-height:100vh;
+    text-align:center;
+}
+
+.scratch-label{
+    font-family:'Cinzel',serif;
+    font-size:13px;
+    letter-spacing:4px;
+    color:#8c7853;
+    margin-bottom:8px;
+}
+
+.scratch-title{
+    font-family:'Great Vibes',cursive;
+    font-size:52px;
+    color:#594a2b;
+    margin:0 0 28px;
+    font-weight:normal;
+}
+
+.scratch-box{
+    width:min(88vw,390px);
+    margin:auto;
+    position:relative;
+    overflow:hidden;
+    border-radius:16px;
+    box-shadow:0 8px 30px rgba(100,70,40,.18);
+    background:#fdfbf7;
+    border:1px solid #b89768;
+}
+
+.scratch-box img{
+    width:100%;
+    height:auto;
+    display:block;
+}
+
+#scratchCanvas{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    cursor:crosshair;
+    touch-action:none;
+}
+
+.scratch-hint{
+    margin-top:18px;
+    font-family:'Cinzel',serif;
+    font-size:11px;
+    letter-spacing:2px;
+    color:#8c7853;
+}
+
+/* =========================================================
+   TIMELINE
+========================================================= */
+
+.timeline-section{
+    display:block;
+    padding-top:80px;
+    padding-bottom:80px;
+}
+
+.timeline-heading{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.timeline-small{
+    font-family:'Cinzel',serif;
+    font-size:12px;
+    letter-spacing:4px;
+    color:#8c7853;
+}
+
+.timeline-title{
+    font-family:'Great Vibes',cursive;
+    font-size:60px;
+    font-weight:normal;
+    color:#594a2b;
+    margin:5px 0 0;
+}
+
+.timeline{
+    width:min(100%,900px);
+    margin:auto;
+    position:relative;
+    padding:10px 0;
+}
+
+/* center line */
+
+.timeline::before{
+    content:"";
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:50%;
+    width:1px;
+    background:linear-gradient(
+        to bottom,
+        transparent,
+        #b89768 8%,
+        #b89768 92%,
+        transparent
+    );
+    transform:translateX(-50%);
+}
+
+.timeline-item{
+    position:relative;
+    width:100%;
+    min-height:190px;
+    display:flex;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.timeline-side{
+    width:50%;
+    padding:12px 28px;
+}
+
+.timeline-item:nth-child(odd) .timeline-side.left{
+    text-align:right;
+}
+
+.timeline-item:nth-child(odd) .timeline-side.right{
+    text-align:left;
+}
+
+.timeline-item:nth-child(even) .timeline-side.left{
+    text-align:left;
+}
+
+.timeline-item:nth-child(even) .timeline-side.right{
+    text-align:right;
+}
+
+.timeline-image{
+    width:min(100%,250px);
+    border-radius:14px;
+    border:1px solid #b89768;
+    box-shadow:0 5px 22px rgba(100,70,40,.14);
+}
+
+.timeline-time{
+    font-family:'Cinzel',serif;
+    font-size:15px;
+    letter-spacing:3px;
+    color:#8c7853;
+    margin-bottom:5px;
+}
+
+.timeline-event{
+    font-family:'Great Vibes',cursive;
+    font-size:38px;
+    line-height:1.1;
+    color:#713434;
+}
+
+.timeline-dot{
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:50px;
+    height:50px;
+    transform:translate(-50%,-50%);
+    z-index:5;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.timeline-dot img{
+    width:50px;
+    height:50px;
+    object-fit:contain;
+    filter:drop-shadow(0 2px 4px rgba(90,60,30,.15));
+}
+
+/* =========================================================
+   VENUE
+========================================================= */
+
+.venue-card{
+    width:min(100%,520px);
+    margin:auto;
+    background:#fdfbf7;
+    border:2px solid #b89768;
+    border-radius:16px;
+    padding:55px 30px;
+    text-align:center;
+    box-shadow:0 8px 30px rgba(184,151,104,.18);
+    position:relative;
+    overflow:hidden;
+}
+
+.venue-small{
+    font-family:'Cinzel',serif;
+    font-size:12px;
+    letter-spacing:4px;
+    color:#8c7853;
+}
+
+.venue-name{
+    font-family:'Great Vibes',cursive;
+    font-size:52px;
+    color:#594a2b;
+    margin:15px 0 8px;
+    font-weight:normal;
+}
+
+.venue-city{
+    font-family:'Playfair Display',serif;
+    font-size:18px;
+    color:#713434;
+    margin-bottom:28px;
+}
+
+.map-button{
+    display:inline-block;
+    text-decoration:none;
+    color:#713434;
+    border:1px solid #b89768;
+    padding:11px 22px;
+    border-radius:30px;
+    font-family:'Cinzel',serif;
+    font-size:11px;
+    letter-spacing:2px;
+    background:#fdfbf7;
+}
+
+/* =========================================================
+   DRESS CODE
+========================================================= */
+
+.dress-card{
+    width:min(100%,520px);
+    background:#fdfbf7;
+    border:2px solid #b89768;
+    border-radius:16px;
+    padding:50px 30px 140px;
+    text-align:center;
+    box-shadow:0 8px 30px rgba(184,151,104,.18);
+    position:relative;
+    overflow:hidden;
+}
+
+.dress-label{
+    font-family:'Cinzel',serif;
+    font-size:12px;
+    letter-spacing:4px;
+    color:#8c7853;
+}
+
+.dress-title{
+    font-family:'Great Vibes',cursive;
+    font-size:52px;
+    color:#594a2b;
+    margin:8px 0 18px;
+    font-weight:normal;
+}
+
+.dress-text{
+    font-size:15px;
+    line-height:1.75;
+    color:#5c4735;
+    margin:0 auto 25px;
+    max-width:430px;
+}
+
+.palette{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    margin-top:20px;
+}
+
+.palette span{
+    width:29px;
+    height:29px;
+    border-radius:50%;
+    border:1px solid rgba(100,70,40,.2);
+}
+
+.palette span:nth-child(1){background:#594a2b}
+.palette span:nth-child(2){background:#948573}
+.palette span:nth-child(3){background:#b37d78}
+.palette span:nth-child(4){background:#c49a6c}
+.palette span:nth-child(5){background:#fdfbf7}
+
+.dress-flower-tl{
+    position:absolute;
+    top:-10px;
+    left:-10px;
+    width:115px;
+    opacity:.95;
+}
+
+.dress-flower-br{
+    position:absolute;
+    bottom:-10px;
+    right:-10px;
+    width:125px;
+    opacity:.95;
+}
+
+.couple-graphic{
+    position:absolute;
+    bottom:-3px;
+    left:-5px;
+    width:135px;
+    transform:scaleX(-1);
+    object-fit:cover;
+    object-position:top;
+    animation:floatFlower 4s ease-in-out infinite;
+}
+
+/* =========================================================
+   LAST FRAME
+========================================================= */
+
+.final-section{
+    min-height:100vh;
+}
+
+.invitation-card{
+    background-color:#fdfbf7;
+    border:2px solid #b89768;
+    padding:60px 30px;
+    width:min(100%,520px);
+    min-height:570px;
+    border-radius:16px;
+    box-shadow:0 8px 30px rgba(184,151,104,.2);
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.final-content{
+    position:relative;
+    z-index:4;
+}
+
+.final-message{
+    font-family:'Playfair Display',serif;
+    font-style:italic;
+    font-size:24px;
+    color:#5c4735;
+    line-height:1.4;
+    margin-bottom:28px;
+}
+
+.final-names{
+    font-family:'Great Vibes',cursive;
+    font-size:54px;
+    color:#594a2b;
+    margin:0 0 28px;
+    font-weight:normal;
+}
+
+.final-and{
+    font-size:32px;
+    vertical-align:middle;
+    margin:0 12px;
+}
+
+.final-date{
+    font-size:13px;
+    color:#8c7853;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-family:'Cinzel',serif;
+    font-weight:600;
+}
+
+.final-flower-tl{
+    position:absolute;
+    top:-10px;
+    left:-10px;
+    width:115px;
+    opacity:.95;
+    animation:floatFlower 4s ease-in-out infinite;
+}
+
+.final-flower-br{
+    position:absolute;
+    bottom:-10px;
+    right:-10px;
+    width:125px;
+    opacity:.95;
+    animation:floatFlower 4s ease-in-out infinite 2s;
+}
+
+.final-frame{
+    position:absolute;
+    top:20px;
+    left:20px;
+    right:20px;
+    bottom:20px;
+    border:2px solid #dcd0bb;
+    border-radius:12px;
+    pointer-events:none;
+    z-index:1;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:600px){
+
+    .section{
+        padding:60px 14px;
+    }
+
+    .beginning-card,
+    .invitation-card{
+        min-height:540px;
+        padding:50px 25px;
+    }
+
+    .main-message,
+    .final-message{
+        font-size:21px;
+    }
+
+    .couple-names,
+    .final-names{
+        font-size:48px;
+    }
+
+    .scratch-title,
+    .dress-title{
+        font-size:48px;
+    }
+
+    .timeline-title{
+        font-size:54px;
+    }
+
+    .timeline-item{
+        min-height:150px;
+    }
+
+    .timeline-side{
+        padding:8px 15px;
+    }
+
+    .timeline-image{
+        width:100%;
+        max-width:175px;
+    }
+
+    .timeline-time{
+        font-size:11px;
+        letter-spacing:2px;
+    }
+
+    .timeline-event{
+        font-size:28px;
+    }
+
+    .timeline-dot{
+        width:40px;
+        height:40px;
+    }
+
+    .timeline-dot img{
+        width:40px;
+        height:40px;
+    }
+
+    .dress-card{
+        padding:45px 22px 130px;
+    }
+
+    .dress-text{
+        font-size:14px;
+    }
+
+    .venue-name{
+        font-size:46px;
+    }
+
+    .corner-flower-tl,
+    .dress-flower-tl,
+    .final-flower-tl{
+        width:95px;
+    }
+
+    .corner-flower-br,
+    .dress-flower-br,
+    .final-flower-br{
+        width:105px;
+    }
+
+}
+
+/* =========================================================
+   REDUCE MOTION
+========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        scroll-behavior:auto !important;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =======================================================
+     PETALS
+======================================================= -->
+
+<canvas id="petals"></canvas>
+
+
+<!-- =======================================================
+     MUSIC
+======================================================= -->
+
+<audio id="music" loop preload="auto">
+    <source src="alikesath.mp3" type="audio/mpeg">
+</audio>
+
+<button id="musicButton" aria-label="Toggle music">♪</button>
+
+
+<!-- =======================================================
+     OPENING ENVELOPE
+======================================================= -->
+
+<div id="opening">
+
+    <div class="envelope-wrap">
+
+        <video
+            id="envelopeVideo"
+            class="envelope-video"
+            playsinline
+            preload="auto"
+        >
+            <source src="envelope.mp4" type="video/mp4">
+        </video>
+
+        <div class="open-overlay">
+
+            <button id="openButton" class="open-button">
+                TAP TO OPEN
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =======================================================
+     WELCOME VIDEO
+======================================================= -->
+
+<section class="section video-section">
+
+    <div class="section-inner">
+
+        <div class="video-frame">
+
+            <video
+                src="welcome.mp4"
+                playsinline
+                controls
+                preload="metadata"
+            ></video>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     BEAUTIFUL BEGINNING
+======================================================= -->
+
+<section class="section">
+
+    <div class="section-inner">
+
+        <div class="beginning-card">
+
+            <img
+                src="https://i.postimg.cc/8kLFTSRf/IMG-8256.png"
+                class="corner-flower-tl"
+                alt=""
+            >
+
+            <img
+                src="https://i.postimg.cc/dVwrb0gD/IMG-8254.png"
+                class="corner-flower-br"
+                alt=""
+            >
+
+            <div class="square-frame"></div>
+
+            <div class="beginning-content">
+
+                <div class="diamond-divider">◇</div>
+
+                <div class="main-message">
+                    We can’t wait to<br>
+                    celebrate this special<br>
+                    beginning with you.
+                </div>
+
+                <div class="couple-names">
+                    Ali
+                    <span class="names-and">&amp;</span>
+                    Fatema
+                </div>
+
+                <div class="footer-details">
+                    FEBRUARY 28, 2027
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     FAMILY VIDEO
+======================================================= -->
+
+<section class="section video-section">
+
+    <div class="section-inner">
+
+        <div class="video-frame">
+
+            <video
+                src="family.mp4"
+                playsinline
+                controls
+                preload="metadata"
+            ></video>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     SCRATCH TO REVEAL
+======================================================= -->
+
+<section class="section scratch-section">
+
+    <div class="section-inner">
+
+        <div class="scratch-label">
+            A DATE TO HOLD
+        </div>
+
+        <h2 class="scratch-title">
+            Scratch to Reveal
+        </h2>
+
+        <div class="scratch-box" id="scratchBox">
+
+            <!-- DATE UNDERNEATH -->
+            <img
+                src="https://i.ibb.co/FkkwYxQC/IMG-8219.png"
+                alt="Wedding Date"
+            >
+
+            <!-- SAVE THE DATE ON TOP -->
+            <canvas id="scratchCanvas"></canvas>
+
+        </div>
+
+        <div class="scratch-hint">
+            SCRATCH GENTLY TO REVEAL
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     TIMELINE
+======================================================= -->
+
+<section class="section timeline-section">
+
+    <div class="section-inner">
+
+        <div class="timeline-heading">
+
+            <div class="timeline-small">
+                THE CELEBRATION OF
+            </div>
+
+            <h2 class="timeline-title">
+                Our Nikkah
+            </h2>
+
+        </div>
+
+
+        <div class="timeline">
+
+
+            <!-- 7:00 PM -->
+            <div class="timeline-item">
+
+                <div class="timeline-side left">
+
+                    <div class="timeline-time">
+                        7:00 PM
+                    </div>
+
+                    <div class="timeline-event">
+                        Guest Arrival
+                    </div>
+
+                </div>
+
+                <div class="timeline-side right">
+
+                    <img
+                        src="https://files.catbox.moe/pvhxig.png"
+                        class="timeline-image"
+                        alt="Guest Arrival"
+                    >
+
+                </div>
+
+                <div class="timeline-dot">
+
+                    <img
+                        src="https://files.catbox.moe/ihrop0.png"
+                        alt=""
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- 8:00 PM -->
+            <div class="timeline-item">
+
+                <div class="timeline-side left">
+
+                    <img
+                        src="https://files.catbox.moe/4xnqph.png"
+                        class="timeline-image"
+                        alt="Bride Entry"
+                    >
+
+                </div>
+
+                <div class="timeline-side right">
+
+                    <div class="timeline-time">
+                        8:00 PM
+                    </div>
+
+                    <div class="timeline-event">
+                        Bride Entry
+                    </div>
+
+                </div>
+
+                <div class="timeline-dot">
+
+                    <img
+                        src="https://files.catbox.moe/ihrop0.png"
+                        alt=""
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- 8:30 PM -->
+            <div class="timeline-item">
+
+                <div class="timeline-side left">
+
+                    <img
+                        src="https://files.catbox.moe/nvolds.png"
+                        class="timeline-image"
+                        alt="Nikkah Ceremony"
+                    >
+
+                </div>
+
+                <div class="timeline-side right">
+
+                    <div class="timeline-time">
+                        8:30 PM
+                    </div>
+
+                    <div class="timeline-event">
+                        Nikkah Ceremony
+                    </div>
+
+                </div>
+
+                <div class="timeline-dot">
+
+                    <img
+                        src="https://files.catbox.moe/ihrop0.png"
+                        alt=""
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- 9:30 PM -->
+            <div class="timeline-item">
+
+                <div class="timeline-side left">
+
+                    <div class="timeline-time">
+                        9:30 PM
+                    </div>
+
+                    <div class="timeline-event">
+                        Buffet Opening
+                    </div>
+
+                </div>
+
+                <div class="timeline-side right">
+
+                    <img
+                        src="https://files.catbox.moe/dq34d3.png"
+                        class="timeline-image"
+                        alt="Buffet Opening"
+                    >
+
+                </div>
+
+                <div class="timeline-dot">
+
+                    <img
+                        src="https://files.catbox.moe/ihrop0.png"
+                        alt=""
+                    >
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     VENUE
+======================================================= -->
+
+<section class="section">
+
+    <div class="section-inner">
+
+        <div class="venue-card">
+
+            <img
+                src="https://i.postimg.cc/8kLFTSRf/IMG-8256.png"
+                class="corner-flower-tl"
+                alt=""
+            >
+
+            <img
+                src="https://i.postimg.cc/dVwrb0gD/IMG-8254.png"
+                class="corner-flower-br"
+                alt=""
+            >
+
+            <div class="venue-small">
+                THE VENUE
+            </div>
+
+            <div class="venue-name">
+                Akacia Banquet
+            </div>
+
+            <div class="venue-city">
+                Karachi
+            </div>
+
+            <a
+                class="map-button"
+                href="https://maps.google.com/?q=Akacia+Banquet+Karachi"
+                target="_blank"
+            >
+                VIEW ON MAP
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     DRESS CODE
+======================================================= -->
+
+<section class="section">
+
+    <div class="section-inner">
+
+        <div class="dress-card">
+
+            <img
+                src="https://i.postimg.cc/8kLFTSRf/IMG-8256.png"
+                class="dress-flower-tl"
+                alt=""
+            >
+
+            <img
+                src="https://i.postimg.cc/dVwrb0gD/IMG-8254.png"
+                class="dress-flower-br"
+                alt=""
+            >
+
+            <img
+                src="https://i.postimg.cc/pL0N8mHQ/IMG-8261.png"
+                class="couple-graphic"
+                alt=""
+            >
+
+            <div class="dress-label">
+                DRESS CODE
+            </div>
+
+            <div class="dress-title">
+                Festive Formal
+            </div>
+
+            <p class="dress-text">
+                Traditional or formal attire is encouraged.
+                Sarees, lehengas, anarkalis, sherwanis,
+                kurtas, and formal dresses are all welcome.
+                We kindly ask guests to avoid overly casual
+                attire and white/ivory.
+            </p>
+
+            <div class="palette">
+
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     LAST FRAME
+======================================================= -->
+
+<section class="section final-section">
+
+    <div class="section-inner">
+
+        <div class="invitation-card">
+
+            <img
+                src="https://i.postimg.cc/8kLFTSRf/IMG-8256.png"
+                class="final-flower-tl"
+                alt=""
+            >
+
+            <img
+                src="https://i.postimg.cc/dVwrb0gD/IMG-8254.png"
+                class="final-flower-br"
+                alt=""
+            >
+
+            <div class="final-frame"></div>
+
+            <div class="final-content">
+
+                <div class="diamond-divider">
+                    ◇
+                </div>
+
+                <div class="final-message">
+                    We can’t wait to<br>
+                    celebrate this special<br>
+                    beginning with you.
+                </div>
+
+                <div class="final-names">
+                    Ali
+                    <span class="final-and">&amp;</span>
+                    Fatema
+                </div>
+
+                <div class="final-date">
+                    FEBRUARY 28, 2027
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+
+/* =========================================================
+   OPENING + MUSIC
+========================================================= */
+
+const opening = document.getElementById("opening");
+const openButton = document.getElementById("openButton");
+const envelopeVideo = document.getElementById("envelopeVideo");
+const music = document.getElementById("music");
+const musicButton = document.getElementById("musicButton");
+
+let musicPlaying = false;
+
+
+/* User taps to open */
+openButton.addEventListener("click", function(){
+
+    /* Start envelope video */
+    envelopeVideo.currentTime = 0;
+
+    envelopeVideo.play().catch(function(){
+        console.log("Video could not autoplay.");
+    });
+
+
+    /* Start music on same user interaction */
+    music.volume = 0.45;
+
+    music.play().then(function(){
+
+        musicPlaying = true;
+        musicButton.innerHTML = "♫";
+
+    }).catch(function(){
+
+        musicPlaying = false;
+
+    });
+
+
+    /* Hide button after opening starts */
+    openButton.style.opacity = "0";
+    openButton.style.pointerEvents = "none";
+
+});
+
+
+/* When envelope finishes, reveal website */
+envelopeVideo.addEventListener("ended", function(){
+
+    opening.classList.add("hide");
+
+    document.body.style.overflowX = "hidden";
+
+});
+
+
+/* If video cannot be loaded, still allow user to enter */
+envelopeVideo.addEventListener("error", function(){
+
+    setTimeout(function(){
+
+        opening.classList.add("hide");
+
+    },1200);
+
+});
+
+
+/* =========================================================
+   MUSIC TOGGLE
+========================================================= */
+
+musicButton.addEventListener("click", function(){
+
+    if(music.paused){
+
+        music.play().then(function(){
+
+            musicPlaying = true;
+            musicButton.innerHTML = "♫";
+
+        });
+
+    }else{
+
+        music.pause();
+
+        musicPlaying = false;
+
+        musicButton.innerHTML = "♪";
+
+    }
+
+});
+
+
+/* =========================================================
+   SCRATCH TO REVEAL
+========================================================= */
+
+const scratchCanvas = document.getElementById("scratchCanvas");
+const scratchBox = document.getElementById("scratchBox");
+const ctx = scratchCanvas.getContext("2d");
+
+let scratching = false;
+let scratchStarted = false;
+
+
+/* Set canvas according to actual image/card size */
+function setupScratch(){
+
+    const rect = scratchBox.getBoundingClientRect();
+
+    const dpr = window.devicePixelRatio || 1;
+
+    scratchCanvas.width = rect.width * dpr;
+    scratchCanvas.height = rect.height * dpr;
+
+    scratchCanvas.style.width = rect.width + "px";
+    scratchCanvas.style.height = rect.height + "px";
+
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+
+    /*
+       Save the Date image sits on top.
+       This means user sees the picture BEFORE scratching.
+    */
+
+    ctx.globalCompositeOperation = "source-over";
+
+    const overlay = new Image();
+
+    overlay.onload = function(){
+
+        ctx.clearRect(0,0,rect.width,rect.height);
+
+        ctx.drawImage(
+            overlay,
+            0,
+            0,
+            rect.width,
+            rect.height
+        );
+
+    };
+
+    overlay.src =
+        "https://i.ibb.co/cSfFXzr6/IMG-8220.png";
+
+}
+
+
+/* Find pointer position */
+function getPointerPosition(event){
+
+    const rect = scratchCanvas.getBoundingClientRect();
+
+    let clientX;
+    let clientY;
+
+    if(event.touches && event.touches.length){
+
+        clientX = event.touches[0].clientX;
+        clientY = event.touches[0].clientY;
+
+    }else{
+
+        clientX = event.clientX;
+        clientY = event.clientY;
+
+    }
+
+    return {
+        x:clientX - rect.left,
+        y:clientY - rect.top
+    };
+
+}
+
+
+/* Scratch */
+function scratch(event){
+
+    if(!scratching) return;
+
+    event.preventDefault();
+
+    scratchStarted = true;
+
+    const pos = getPointerPosition(event);
+
+    ctx.globalCompositeOperation = "destination-out";
+
+    ctx.beginPath();
+
+    ctx.arc(
+        pos.x,
+        pos.y,
+        25,
+        0,
+        Math.PI * 2
+    );
+
+    ctx.fill();
+
+}
+
+
+/* Mouse */
+scratchCanvas.addEventListener("mousedown",function(event){
+
+    scratching = true;
+
+    scratch(event);
+
+});
+
+scratchCanvas.addEventListener("mousemove",scratch);
+
+window.addEventListener("mouseup",function(){
+
+    scratching = false;
+
+});
+
+
+/* Touch */
+scratchCanvas.addEventListener("touchstart",function(event){
+
+    scratching = true;
+
+    scratch(event);
+
+},{passive:false});
+
+scratchCanvas.addEventListener("touchmove",function(event){
+
+    scratch(event);
+
+},{passive:false});
+
+scratchCanvas.addEventListener("touchend",function(){
+
+    scratching = false;
+
+});
+
+
+window.addEventListener("resize",function(){
+
+    setupScratch();
+
+});
+
+
+/* =========================================================
+   PETAL BACKGROUND
+========================================================= */
+
+const petalCanvas = document.getElementById("petals");
+const petalCtx = petalCanvas.getContext("2d");
+
+let petals = [];
+
+function resizePetals(){
+
+    petalCanvas.width = window.innerWidth;
+    petalCanvas.height = window.innerHeight;
+
+}
+
+resizePetals();
+
+window.addEventListener("resize",resizePetals);
+
+
+/* Create 40 tiny petals */
+
+for(let i=0;i<40;i++){
+
+    petals.push({
+
+        x:Math.random()*window.innerWidth,
+
+        y:Math.random()*window.innerHeight,
+
+        sizeX:Math.random()*3.5+2,
+
+        sizeY:Math.random()*2+1,
+
+        speed:Math.random()*0.45+0.15,
+
+        sway:Math.random()*0.7+0.2,
+
+        angle:Math.random()*Math.PI*2,
+
+        rotation:Math.random()*Math.PI*2,
+
+        rotationSpeed:(Math.random()-0.5)*0.02,
+
+        color:
+            Math.random()>0.5
+            ? "rgba(215,190,165,0.8)"
+            : "rgba(235,218,198,0.85)"
+
+    });
+
+}
+
+
+function drawPetals(){
+
+    petalCtx.clearRect(
+        0,
+        0,
+        petalCanvas.width,
+        petalCanvas.height
+    );
+
+
+    petals.forEach(function(p){
+
+        p.y += p.speed;
+
+        p.x += Math.sin(p.y*0.01)*p.sway;
+
+        p.rotation += p.rotationSpeed;
+
+
+        if(p.y > petalCanvas.height + 10){
+
+            p.y = -10;
+
+            p.x = Math.random()*petalCanvas.width;
+
+        }
+
+
+        petalCtx.save();
+
+        petalCtx.translate(p.x,p.y);
+
+        petalCtx.rotate(p.rotation);
+
+        petalCtx.fillStyle = p.color;
+
+        petalCtx.beginPath();
+
+        petalCtx.ellipse(
+            0,
+            0,
+            p.sizeX,
+            p.sizeY,
+            0,
+            0,
+            Math.PI*2
+        );
+
+        petalCtx.fill();
+
+        petalCtx.restore();
+
+    });
+
+
+    requestAnimationFrame(drawPetals);
+
+}
+
+drawPetals();
+
+
+/* =========================================================
+   INITIALIZE SCRATCH
+========================================================= */
+
+window.addEventListener("load",function(){
+
+    setupScratch();
+
+});
+
+</script>
+
+</body>
+</html>
