@@ -569,6 +569,9 @@ section{
   font-style:italic;
 }
 
+
+/* PALETTE */
+
 .palette-container{
   display:flex;
   justify-content:center;
@@ -768,7 +771,7 @@ section{
 
 <!-- ================= MUSIC ================= -->
 
-<audio id="music" preload="auto" loop autoplay>
+<audio id="music" preload="auto" loop>
   <source src="alikesath.mp3" type="audio/mpeg">
 </audio>
 
@@ -1099,8 +1102,6 @@ section{
     </div>
 
 
-    <!-- EXACT ORIGINAL COUPLE -->
-
     <img
       src="https://i.postimg.cc/pL0N8mHQ/IMG-8261.png"
       alt="Couple Graphic"
@@ -1185,7 +1186,7 @@ let invitationOpened = false;
 
 /* =========================================================
    OPENING TAP
-   MUSIC + VIDEO START FROM SAME USER GESTURE
+   FIRST SCREEN TAP = MUSIC + ENVELOPE OPEN
 ========================================================= */
 
 function openInvitation(event){
@@ -1199,34 +1200,55 @@ function openInvitation(event){
   invitationOpened = true;
 
 
-  /* Show music button only after opening tap */
+  /* =========================================
+     SHOW MUSIC BUTTON ONLY AFTER FIRST TAP
+  ========================================= */
 
   musicToggle.classList.add("show");
 
 
-  /* ================= MUSIC ================= */
+  /* =========================================
+     MUSIC STARTS FROM SAME USER GESTURE
+  ========================================= */
 
   music.muted = false;
   music.volume = 0.65;
   music.currentTime = 0;
 
-  music.play().then(function(){
+  const musicPromise = music.play();
 
-    console.log("Music started successfully!");
+  if(musicPromise !== undefined){
 
-  }).catch(function(error){
+    musicPromise.then(function(){
 
-    console.log("Music blocked:",error);
+      musicToggle.textContent = "♪";
 
-  });
+      musicToggle.classList.remove("muted");
+
+      console.log("Music started successfully!");
+
+    }).catch(function(error){
+
+      console.log(
+        "Music blocked by browser:",
+        error
+      );
+
+    });
+
+  }
 
 
-  /* ================= GOLDEN BURST ================= */
+  /* =========================================
+     GOLDEN BURST
+  ========================================= */
 
   openingBurst();
 
 
-  /* ================= ENVELOPE VIDEO ================= */
+  /* =========================================
+     ENVELOPE VIDEO
+  ========================================= */
 
   envelopePoster.style.display = "none";
 
@@ -1234,7 +1256,8 @@ function openInvitation(event){
 
   envelopeVideo.currentTime = 0;
 
-  const videoPromise = envelopeVideo.play();
+  const videoPromise =
+    envelopeVideo.play();
 
   if(videoPromise !== undefined){
 
@@ -1252,22 +1275,22 @@ function openInvitation(event){
 }
 
 
-/*
-   iPhone / Safari
-   touchend is used so the music starts
-   directly from the physical tap gesture.
-*/
+/* =========================================================
+   FIRST PHYSICAL SCREEN TAP
+========================================================= */
 
 tapOverlay.addEventListener(
-  "touchend",
+  "touchstart",
   openInvitation,
-  {passive:false}
+  {
+    passive:false
+  }
 );
 
 
-/*
-   Desktop / non-touch devices
-*/
+/* =========================================================
+   DESKTOP CLICK
+========================================================= */
 
 tapOverlay.addEventListener(
   "click",
