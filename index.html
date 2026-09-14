@@ -1101,7 +1101,6 @@ section{
 
     </div>
 
-
     <img
       src="https://i.postimg.cc/pL0N8mHQ/IMG-8261.png"
       alt="Couple Graphic"
@@ -1186,7 +1185,7 @@ let invitationOpened = false;
 
 /* =========================================================
    OPENING TAP
-   FIRST SCREEN TAP = MUSIC + ENVELOPE OPEN
+   FIRST TAP = MUSIC + ENVELOPE VIDEO
 ========================================================= */
 
 function openInvitation(event){
@@ -1195,20 +1194,20 @@ function openInvitation(event){
     event.preventDefault();
   }
 
-  if(invitationOpened) return;
+  if(invitationOpened){
+    return;
+  }
 
   invitationOpened = true;
 
 
-  /* =========================================
-     SHOW MUSIC BUTTON ONLY AFTER FIRST TAP
-  ========================================= */
+  /* SHOW MUSIC ICON */
 
   musicToggle.classList.add("show");
 
 
   /* =========================================
-     MUSIC STARTS FROM SAME USER GESTURE
+     START MUSIC DIRECTLY FROM THE TAP
   ========================================= */
 
   music.muted = false;
@@ -1225,12 +1224,17 @@ function openInvitation(event){
 
       musicToggle.classList.remove("muted");
 
-      console.log("Music started successfully!");
+      musicToggle.setAttribute(
+        "aria-label",
+        "Mute music"
+      );
+
+      console.log("Music started!");
 
     }).catch(function(error){
 
       console.log(
-        "Music blocked by browser:",
+        "Music could not start:",
         error
       );
 
@@ -1276,25 +1280,18 @@ function openInvitation(event){
 
 
 /* =========================================================
-   FIRST PHYSICAL SCREEN TAP
-========================================================= */
-
-tapOverlay.addEventListener(
-  "touchstart",
-  openInvitation,
-  {
-    passive:false
-  }
-);
-
-
-/* =========================================================
-   DESKTOP CLICK
+   IMPORTANT:
+   ONLY ONE CLICK HANDLER
+   MUSIC STARTS ON SAME TAP
 ========================================================= */
 
 tapOverlay.addEventListener(
   "click",
-  openInvitation
+  function(event){
+
+    openInvitation(event);
+
+  }
 );
 
 
@@ -1338,6 +1335,7 @@ welcomeVideo.addEventListener(
 
 /* =========================================================
    MUSIC MUTE / UNMUTE
+   ICON IS ONLY FOR THIS
 ========================================================= */
 
 musicToggle.addEventListener(
