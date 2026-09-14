@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Ali & Fatema</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Great+Vibes&family=Playfair+Display:ital,wght@0;1&display=swap" rel="stylesheet">
 
 <style>
 
-/* =========================
+/* =====================================================
    GLOBAL
-========================= */
+===================================================== */
 
 *{
     box-sizing:border-box;
@@ -26,17 +27,36 @@ html{
 
 body{
     min-height:100vh;
-    background:linear-gradient(-45deg,#f7f4ee,#f3ede2,#e6dcc8,#f5efe6);
+    overflow-x:hidden;
+
+    background:linear-gradient(
+        -45deg,
+        #f7f4ee,
+        #f3ede2,
+        #e6dcc8,
+        #f5efe6
+    );
+
     background-size:400% 400%;
     animation:backgroundMove 15s ease infinite;
+
     color:#594a2b;
-    overflow-x:hidden;
 }
 
 @keyframes backgroundMove{
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
+
+    0%{
+        background-position:0% 50%;
+    }
+
+    50%{
+        background-position:100% 50%;
+    }
+
+    100%{
+        background-position:0% 50%;
+    }
+
 }
 
 section{
@@ -54,17 +74,26 @@ button{
     font-family:inherit;
 }
 
-/* =========================
-   BACKGROUND CANVASES
-========================= */
+
+/* =====================================================
+   BACKGROUND PETALS + SPARKS
+===================================================== */
 
 #petals,
 #sparks{
+
     position:fixed;
-    inset:0;
+
+    top:0;
+    left:0;
+
     width:100%;
     height:100%;
+
     pointer-events:none;
+}
+
+#petals{
     z-index:9999;
 }
 
@@ -72,29 +101,46 @@ button{
     z-index:10000;
 }
 
-/* =========================
-   OPENING
-========================= */
+
+/* =====================================================
+   OPENING ENVELOPE
+===================================================== */
 
 #opening{
+
     position:fixed;
-    inset:0;
+
+    top:0;
+    left:0;
+
     width:100%;
     height:100vh;
     height:100svh;
+
     background:#f7f4ee;
+
     z-index:5000;
+
     overflow:hidden;
+
     cursor:pointer;
-    transition:opacity 1.2s ease, visibility 1.2s ease;
+
+    transition:
+        opacity 1.2s ease,
+        visibility 1.2s ease;
 }
 
 #envelopePoster,
 #envelopeVideo{
+
     position:absolute;
-    inset:0;
+
+    top:0;
+    left:0;
+
     width:100%;
     height:100%;
+
     object-fit:cover;
 }
 
@@ -103,472 +149,833 @@ button{
 }
 
 #envelopeVideo{
+
     z-index:2;
+
     opacity:0;
+
     transition:opacity .4s ease;
 }
 
 #tapText{
+
     position:absolute;
+
     z-index:5;
+
     left:50%;
     bottom:12%;
+
     transform:translateX(-50%);
+
     color:#fff;
+
     font-family:'Great Vibes',cursive;
+
     font-size:38px;
+
     white-space:nowrap;
+
     text-shadow:
         0 2px 8px rgba(0,0,0,.65),
         0 0 18px rgba(255,255,255,.35);
+
     animation:tapGlow 2s ease-in-out infinite;
 }
 
 @keyframes tapGlow{
-    0%,100%{opacity:.7;transform:translateX(-50%) scale(1)}
-    50%{opacity:1;transform:translateX(-50%) scale(1.05)}
+
+    0%,
+    100%{
+        opacity:.7;
+        transform:translateX(-50%) scale(1);
+    }
+
+    50%{
+        opacity:1;
+        transform:translateX(-50%) scale(1.05);
+    }
+
 }
 
-body.opened #opening{
-    opacity:0;
-    visibility:hidden;
-    pointer-events:none;
-}
 
-/* =========================
+/* =====================================================
    WELCOME
-========================= */
+===================================================== */
 
 #welcome{
+
     width:100%;
+
     background:#f7f4ee;
 }
 
 #welcome video{
+
     width:100%;
     height:auto;
+
     min-height:100vh;
+
     object-fit:cover;
 }
 
-/* =========================
+
+/* =====================================================
    GENERAL CARD
-========================= */
+===================================================== */
 
 .invitation-card{
+
     position:relative;
+
     width:350px;
     max-width:calc(100% - 30px);
+
     margin:0 auto;
+
     background:#fdfbf7;
+
     border:2px solid #b89768;
+
     border-radius:16px;
-    box-shadow:0 12px 35px rgba(89,74,43,.15);
+
+    box-shadow:
+        0 12px 35px rgba(89,74,43,.15);
+
     overflow:hidden;
 }
 
-/* =========================
+
+/* =====================================================
    BEAUTIFUL BEGINNING
-========================= */
+===================================================== */
 
 #beautiful{
+
     padding:25px 0 30px;
+
     background:transparent;
 }
 
 .beautiful-card{
+
     padding:45px 30px;
+
     text-align:center;
 }
 
 .flower-tl{
+
     position:absolute;
+
     top:-8px;
     left:-8px;
+
     width:110px;
+
     z-index:2;
+
     pointer-events:none;
-    animation:flowerFloat 5s ease-in-out infinite;
+
+    animation:
+        flowerFloat 5s ease-in-out infinite;
 }
 
 .flower-br{
+
     position:absolute;
+
     bottom:-8px;
     right:-8px;
+
     width:120px;
+
     z-index:2;
+
     pointer-events:none;
-    animation:flowerFloat 5.5s ease-in-out infinite;
+
+    animation:
+        flowerFloat 5.5s ease-in-out infinite;
 }
 
 @keyframes flowerFloat{
-    0%,100%{transform:translateY(0) rotate(0deg)}
-    50%{transform:translateY(-5px) rotate(1deg)}
+
+    0%,
+    100%{
+        transform:translateY(0) rotate(0deg);
+    }
+
+    50%{
+        transform:translateY(-5px) rotate(1deg);
+    }
+
 }
 
 .small-label{
+
     font-family:'Cinzel',serif;
+
     font-size:11px;
+
     letter-spacing:2px;
+
     color:#8c7853;
+
     text-transform:uppercase;
+
     margin-bottom:8px;
 }
 
 .section-title{
+
     font-family:'Great Vibes',cursive;
+
     color:#594a2b;
+
     font-size:38px;
+
     font-weight:400;
+
     line-height:1.1;
 }
 
 .gold-line{
+
     width:75px;
+
     height:1px;
+
     background:#b89768;
+
     margin:18px auto;
 }
 
 .beautiful-text{
+
     font-family:'Playfair Display',serif;
+
     color:#6b5c3f;
+
     font-size:13px;
+
     line-height:1.7;
+
     margin-bottom:22px;
 }
 
 .names{
+
     font-family:'Great Vibes',cursive;
+
     font-size:42px;
+
     color:#594a2b;
 }
 
-/* =========================
+
+/* =====================================================
    FAMILY VIDEO
-========================= */
+===================================================== */
 
 #family{
+
     padding:0;
+
     background:transparent;
 }
 
 #family video{
+
     width:100%;
+
     height:auto;
+
     object-fit:contain;
 }
 
-/* =========================
-   SCRATCH SECTION
-========================= */
+
+/* =====================================================
+   SCRATCH TO REVEAL
+===================================================== */
 
 #scratch-section{
+
     padding:35px 0;
+
     background:transparent;
 }
 
 .scratch-card{
+
     padding:35px 20px 40px;
+
     text-align:center;
 }
 
 .scratch-heading{
+
     font-family:'Great Vibes',cursive;
+
     color:#594a2b;
+
     font-size:38px;
+
     margin-bottom:20px;
 }
 
 .scratch-area{
+
     position:relative;
+
     width:100%;
+
     max-width:310px;
+
     margin:0 auto;
+
     overflow:hidden;
+
     border-radius:10px;
-    box-shadow:0 8px 25px rgba(89,74,43,.16);
+
+    box-shadow:
+        0 8px 25px rgba(89,74,43,.16);
 }
 
 .scratch-reveal-image{
+
     display:block;
+
     width:100%;
+
     height:auto;
 }
 
 #scratchCanvas{
+
     position:absolute;
+
     inset:0;
+
     width:100%;
     height:100%;
+
     touch-action:none;
+
     cursor:crosshair;
 }
 
-/* =========================
-   TIMELINE
-========================= */
+
+/* =====================================================
+   TIMELINE — EXACT USER CODE
+===================================================== */
 
 #timeline{
+
     padding:25px 0 35px;
+
+    background:transparent;
 }
 
 .timeline-card{
-    padding:35px 25px 45px;
-}
 
-.timeline-title{
+    background-color:#fdfbf7;
+
+    border:2px solid #b89768;
+
+    padding:40px 30px;
+
+    width:340px;
+
+    border-radius:16px;
+
+    box-shadow:
+        0 4px 20px rgba(184,151,104,0.2);
+
     text-align:center;
-    font-family:'Great Vibes',cursive;
-    font-size:40px;
-    color:#594a2b;
+
+    position:relative;
+
+    overflow:hidden;
 }
 
-.timeline-line{
+.celebration-text{
+
+    font-family:'Playfair Display',serif;
+
+    font-size:15px;
+
+    color:#8c7853;
+
+    font-style:italic;
+
+    margin-bottom:2px;
+}
+
+.event-title h2{
+
+    color:#594a2b;
+
+    font-family:'Great Vibes',cursive;
+
+    font-size:40px;
+
+    margin:0 0 15px 0;
+
+    font-weight:normal;
+}
+
+.divider{
+
+    width:50px;
+
+    height:1px;
+
+    background-color:#b89768;
+
+    margin:0 auto 25px auto;
+}
+
+.timeline-container{
+
+    text-align:left;
+
     position:relative;
+
+    padding-left:25px;
+
+    margin:15px 0;
+}
+
+.timeline-container::before{
+
+    content:'';
+
+    position:absolute;
+
+    left:7px;
+
+    top:5px;
+
+    bottom:5px;
+
     width:2px;
-    background:#b89768;
-    margin:25px auto 15px;
+
+    background-color:#b89768;
 }
 
 .timeline-item{
+
+    margin-bottom:18px;
+
     position:relative;
-    padding-left:25px;
-    margin-bottom:25px;
 }
 
-.timeline-item:last-child{
-    margin-bottom:0;
-}
+.timeline-item::after{
 
-.timeline-dot{
+    content:'';
+
     position:absolute;
-    left:-7px;
+
+    left:-18px;
+
     top:4px;
-    width:14px;
-    height:14px;
+
+    width:8px;
+
+    height:8px;
+
+    background-color:#b89768;
+
     border-radius:50%;
-    background:#b89768;
-    border:3px solid #fdfbf7;
-    box-shadow:0 0 0 1px #b89768;
 }
 
-.timeline-time{
-    font-family:'Cinzel',serif;
-    font-size:12px;
-    letter-spacing:1.5px;
+.time{
+
+    font-weight:600;
+
     color:#8c7853;
-    margin-bottom:3px;
+
+    font-size:12px;
+
+    display:block;
+
+    font-family:'Cinzel',serif;
 }
 
-.timeline-event{
+.event{
+
+    color:#3b301a;
+
+    font-size:14px;
+
     font-family:'Playfair Display',serif;
-    font-size:16px;
-    color:#594a2b;
 }
 
-/* =========================
+@keyframes floatAnimation{
+
+    0%{
+        transform:translateY(0px) rotate(0deg);
+    }
+
+    50%{
+        transform:translateY(-3px) rotate(1deg);
+    }
+
+    100%{
+        transform:translateY(0px) rotate(0deg);
+    }
+}
+
+
+/* Top-Left Corner Flower */
+
+.corner-flower-tl{
+
+    position:absolute;
+
+    top:-8px;
+    left:-8px;
+
+    width:120px;
+
+    opacity:0.95;
+
+    pointer-events:none;
+
+    animation:
+        floatAnimation 4s ease-in-out infinite;
+}
+
+
+/* Bottom-Right Corner Flower */
+
+.corner-flower-br{
+
+    position:absolute;
+
+    bottom:-8px;
+    right:-8px;
+
+    width:130px;
+
+    opacity:0.95;
+
+    pointer-events:none;
+
+    animation:
+        floatAnimation 4s ease-in-out infinite 2s;
+}
+
+
+/* =====================================================
    VENUE
-========================= */
+===================================================== */
 
 #venue{
+
     padding:25px 0 35px;
 }
 
 .venue-card{
+
     padding:40px 25px;
+
     text-align:center;
 }
 
 .venue-name{
+
     font-family:'Great Vibes',cursive;
+
     font-size:42px;
+
     color:#594a2b;
+
     margin:8px 0 4px;
 }
 
 .venue-city{
+
     font-family:'Cinzel',serif;
+
     color:#8c7853;
+
     font-size:12px;
+
     letter-spacing:2px;
+
     margin-bottom:25px;
 }
 
 .map-button{
+
     display:inline-block;
+
     padding:11px 23px;
+
     border:1px solid #b89768;
+
     border-radius:30px;
+
     text-decoration:none;
+
     color:#594a2b;
+
     font-family:'Cinzel',serif;
+
     font-size:10px;
+
     letter-spacing:1.5px;
+
     transition:.3s ease;
 }
 
 .map-button:hover{
+
     background:#b89768;
+
     color:#fff;
 }
 
-/* =========================
+
+/* =====================================================
    DRESS CODE
-========================= */
+===================================================== */
 
 #dress-code{
+
     padding:25px 0 35px;
 }
 
 .dress-card{
+
     padding:35px 25px 55px;
+
     text-align:center;
 }
 
 .sub-heading{
+
     font-family:'Cinzel',serif;
+
     font-size:11px;
+
     color:#8c7853;
+
     letter-spacing:2px;
+
     text-transform:uppercase;
 }
 
 .dress-title{
+
     font-family:'Great Vibes',cursive;
+
     font-size:40px;
+
     color:#594a2b;
+
     margin:7px 0 13px;
 }
 
 .description-text{
+
     font-family:'Playfair Display',serif;
+
     font-size:11.5px;
+
     color:#6b5c3f;
+
     line-height:1.45;
+
     font-style:italic;
 }
 
 .palette-container{
+
     display:flex;
+
     justify-content:center;
+
     align-items:center;
+
     gap:10px;
+
     margin:20px 0;
 }
 
 .color-circle{
+
     width:24px;
+
     height:24px;
+
     border-radius:50%;
+
     border:1px solid rgba(89,74,43,.2);
-    box-shadow:0 2px 7px rgba(89,74,43,.15);
+
+    box-shadow:
+        0 2px 7px rgba(89,74,43,.15);
 }
 
 .couple{
+
     position:absolute;
+
     bottom:-10px;
     left:-10px;
+
     width:135px;
+
     max-height:130px;
+
     object-fit:cover;
+
     object-position:top;
+
     opacity:.95;
+
     pointer-events:none;
+
     transform:scaleX(-1);
-    animation:floatAnimation 3.5s ease-in-out infinite;
+
+    animation:
+        floatAnimation 3.5s ease-in-out infinite;
 }
 
-@keyframes floatAnimation{
-    0%,100%{transform:scaleX(-1) translateY(0)}
-    50%{transform:scaleX(-1) translateY(-6px)}
-}
 
-/* =========================
+/* =====================================================
    LAST FRAME
-========================= */
+===================================================== */
 
 #last-frame{
+
     padding:30px 0 70px;
 }
 
 .last-card{
+
     width:360px;
+
     max-width:calc(100% - 30px);
+
     padding:40px 30px;
+
     text-align:center;
 }
 
 .inner-frame{
+
     position:relative;
+
     border:2px solid #dcd0bb;
+
     border-radius:12px;
+
     padding:55px 20px 50px;
+
     min-height:330px;
+
     display:flex;
+
     flex-direction:column;
+
     justify-content:center;
+
     align-items:center;
 }
 
 .last-flower-tl{
+
     position:absolute;
+
     top:-20px;
     left:-20px;
+
     width:115px;
+
     pointer-events:none;
-    animation:flowerFloat 5s ease-in-out infinite;
+
+    animation:
+        flowerFloat 5s ease-in-out infinite;
 }
 
 .last-flower-br{
+
     position:absolute;
+
     bottom:-20px;
     right:-20px;
+
     width:125px;
+
     pointer-events:none;
-    animation:flowerFloat 5.5s ease-in-out infinite;
+
+    animation:
+        flowerFloat 5.5s ease-in-out infinite;
 }
 
 .diamond{
+
     font-size:25px;
+
     color:#b89768;
+
     margin-bottom:15px;
 }
 
 .last-message{
+
     font-family:'Playfair Display',serif;
+
     font-style:italic;
+
     font-size:17px;
+
     line-height:1.65;
+
     color:#594a2b;
 }
 
 .last-names{
+
     font-family:'Great Vibes',cursive;
+
     font-size:42px;
+
     color:#594a2b;
+
     margin-top:20px;
 }
 
 .last-date{
+
     font-family:'Cinzel',serif;
+
     font-size:10px;
+
     letter-spacing:2px;
+
     color:#8c7853;
+
     margin-top:8px;
 }
 
-/* =========================
+
+/* =====================================================
    MOBILE
-========================= */
+===================================================== */
 
 @media(max-width:380px){
 
     #tapText{
+
         font-size:32px;
     }
 
     .invitation-card{
+
         max-width:calc(100% - 24px);
     }
 
@@ -576,6 +983,7 @@ body.opened #opening{
     .timeline-card,
     .venue-card,
     .dress-card{
+
         padding-left:20px;
         padding-right:20px;
     }
@@ -584,38 +992,51 @@ body.opened #opening{
     .scratch-heading,
     .timeline-title,
     .dress-title{
+
         font-size:35px;
     }
 
     .names,
     .last-names{
+
         font-size:38px;
     }
+
 }
 
 </style>
 </head>
 
+
 <body>
 
-<!-- =========================
+
+<!-- =====================================================
      BACKGROUND
-========================= -->
+===================================================== -->
 
 <canvas id="petals"></canvas>
+
 <canvas id="sparks"></canvas>
 
-<!-- =========================
+
+<!-- =====================================================
      MUSIC
-========================= -->
+===================================================== -->
 
 <audio id="music" loop preload="auto">
-    <source src="./alikesath.mp3" type="audio/mpeg">
+
+    <source
+        src="./alikesath.mp3"
+        type="audio/mpeg"
+    >
+
 </audio>
 
-<!-- =========================
+
+<!-- =====================================================
      OPENING ENVELOPE
-========================= -->
+===================================================== -->
 
 <div id="opening">
 
@@ -632,7 +1053,12 @@ body.opened #opening{
         muted
         preload="auto"
     >
-        <source src="./envelope.mp4" type="video/mp4">
+
+        <source
+            src="./envelope.mp4"
+            type="video/mp4"
+        >
+
     </video>
 
     <div id="tapText">
@@ -641,9 +1067,10 @@ body.opened #opening{
 
 </div>
 
-<!-- =========================
-     WELCOME
-========================= -->
+
+<!-- =====================================================
+     WELCOME VIDEO
+===================================================== -->
 
 <section id="welcome">
 
@@ -654,14 +1081,20 @@ body.opened #opening{
         muted
         preload="auto"
     >
-        <source src="./welcome.mp4" type="video/mp4">
+
+        <source
+            src="./welcome.mp4"
+            type="video/mp4"
+        >
+
     </video>
 
 </section>
 
-<!-- =========================
+
+<!-- =====================================================
      BEAUTIFUL BEGINNING
-========================= -->
+===================================================== -->
 
 <section id="beautiful">
 
@@ -690,8 +1123,11 @@ body.opened #opening{
         <div class="gold-line"></div>
 
         <div class="beautiful-text">
-            With hearts full of joy, our families invite you to celebrate
-            this joyous beginning of promises, blessings, and forever.
+
+            With hearts full of joy, our families invite you
+            to celebrate this joyous beginning of promises,
+            blessings, and forever.
+
         </div>
 
         <div class="names">
@@ -702,9 +1138,10 @@ body.opened #opening{
 
 </section>
 
-<!-- =========================
+
+<!-- =====================================================
      FAMILY VIDEO
-========================= -->
+===================================================== -->
 
 <section id="family">
 
@@ -715,14 +1152,20 @@ body.opened #opening{
         muted
         preload="auto"
     >
-        <source src="./family.mp4" type="video/mp4">
+
+        <source
+            src="./family.mp4"
+            type="video/mp4"
+        >
+
     </video>
 
 </section>
 
-<!-- =========================
+
+<!-- =====================================================
      SCRATCH TO REVEAL
-========================= -->
+===================================================== -->
 
 <section id="scratch-section">
 
@@ -764,103 +1207,109 @@ body.opened #opening{
 
 </section>
 
-<!-- =========================
+
+<!-- =====================================================
      TIMELINE
-========================= -->
+===================================================== -->
 
 <section id="timeline">
 
     <div class="invitation-card timeline-card">
 
+        <!-- Top-Left Corner Flower -->
+
         <img
-            class="flower-tl"
             src="https://i.postimg.cc/8kLFTSRf/IMG-8256.png"
-            alt=""
+            alt="Top Floral"
+            class="corner-flower-tl"
         >
 
-        <img
-            class="flower-br"
-            src="https://i.postimg.cc/dVwrb0gD/IMG-8254.png"
-            alt=""
-        >
-
-        <div class="small-label">
+        <div class="celebration-text">
             The celebration of
         </div>
 
-        <div class="timeline-title">
-            Our Nikkah
+        <div class="event-title">
+
+            <h2>
+                Our Nikkah
+            </h2>
+
         </div>
 
-        <div class="gold-line"></div>
+        <div class="divider"></div>
 
-        <div class="timeline-line">
+        <div class="timeline-container">
 
             <div class="timeline-item">
 
-                <div class="timeline-dot"></div>
-
-                <div class="timeline-time">
+                <span class="time">
                     7:00 PM
-                </div>
+                </span>
 
-                <div class="timeline-event">
+                <span class="event">
                     Guest Arrival
-                </div>
+                </span>
 
             </div>
 
+
             <div class="timeline-item">
 
-                <div class="timeline-dot"></div>
-
-                <div class="timeline-time">
+                <span class="time">
                     8:00 PM
-                </div>
+                </span>
 
-                <div class="timeline-event">
+                <span class="event">
                     Bride Entry
-                </div>
+                </span>
 
             </div>
 
+
             <div class="timeline-item">
 
-                <div class="timeline-dot"></div>
-
-                <div class="timeline-time">
+                <span class="time">
                     8:30 PM
-                </div>
+                </span>
 
-                <div class="timeline-event">
+                <span class="event">
                     Nikkah Ceremony
-                </div>
+                </span>
 
             </div>
 
+
             <div class="timeline-item">
 
-                <div class="timeline-dot"></div>
+                <span class="time">
+                    9:00 PM
+                </span>
 
-                <div class="timeline-time">
-                    9:30 PM
-                </div>
-
-                <div class="timeline-event">
+                <span class="event">
                     Buffet Opening
-                </div>
+                </span>
 
             </div>
 
         </div>
+
+
+        <!-- Bottom-Right Corner Flower -->
+
+        <img
+            src="https://i.postimg.cc/dVwrb0gD/IMG-8254.png"
+            alt="Bottom Floral"
+            class="corner-flower-br"
+        >
 
     </div>
 
 </section>
 
-<!-- =========================
+
+<!-- =====================================================
      VENUE
-========================= -->
+===================================================== -->
 
 <section id="venue">
 
@@ -902,9 +1351,10 @@ body.opened #opening{
 
 </section>
 
-<!-- =========================
+
+<!-- =====================================================
      DRESS CODE
-========================= -->
+===================================================== -->
 
 <section id="dress-code">
 
@@ -931,12 +1381,15 @@ body.opened #opening{
         </div>
 
         <div class="description-text">
+
             Traditional or formal attire is encouraged.
             Sarees, lehengas, anarkalis, sherwanis, kurtas,
             and formal dresses are all welcome.
             We kindly ask guests to avoid overly casual attire
             and white/ivory.
+
         </div>
+
 
         <div class="palette-container">
 
@@ -967,6 +1420,7 @@ body.opened #opening{
 
         </div>
 
+
         <img
             class="couple"
             src="https://i.postimg.cc/pL0N8mHQ/IMG-8261.png"
@@ -977,9 +1431,10 @@ body.opened #opening{
 
 </section>
 
-<!-- =========================
+
+<!-- =====================================================
      LAST FRAME
-========================= -->
+===================================================== -->
 
 <section id="last-frame">
 
@@ -1004,9 +1459,11 @@ body.opened #opening{
             </div>
 
             <div class="last-message">
+
                 We can’t wait to<br>
                 celebrate this special<br>
                 beginning with you.
+
             </div>
 
             <div class="last-names">
@@ -1026,21 +1483,33 @@ body.opened #opening{
 
 <script>
 
-/* =========================================================
-   OPENING — TAP ANYWHERE
-========================================================= */
+/* =====================================================
+   OPENING
+===================================================== */
 
-const opening = document.getElementById("opening");
-const envelopePoster = document.getElementById("envelopePoster");
-const envelopeVideo = document.getElementById("envelopeVideo");
-const music = document.getElementById("music");
-const welcomeVideo = document.getElementById("welcomeVideo");
+const opening =
+    document.getElementById("opening");
+
+const envelopePoster =
+    document.getElementById("envelopePoster");
+
+const envelopeVideo =
+    document.getElementById("envelopeVideo");
+
+const music =
+    document.getElementById("music");
+
+const welcomeVideo =
+    document.getElementById("welcomeVideo");
 
 let invitationOpened = false;
 
+
 function openInvitation(event){
 
-    if(invitationOpened) return;
+    if(invitationOpened){
+        return;
+    }
 
     invitationOpened = true;
 
@@ -1048,154 +1517,274 @@ function openInvitation(event){
         event.preventDefault();
     }
 
-    /* Golden burst immediately on tap */
+
+    /* Golden burst */
+
     createGoldenBurst();
 
-    /* Start music DIRECTLY from user's tap */
+
+    /* Music starts from the same tap */
+
     music.volume = 0.7;
 
-    const musicPromise = music.play();
+    const musicPromise =
+        music.play();
 
     if(musicPromise !== undefined){
+
         musicPromise.catch(function(){
-            console.log("Music playback was blocked by browser.");
+
+            console.log(
+                "Music playback was blocked."
+            );
+
         });
+
     }
 
-    /* Show envelope video */
+
+    /* Envelope video */
+
     envelopeVideo.currentTime = 0;
+
     envelopeVideo.style.opacity = "1";
 
-    const videoPromise = envelopeVideo.play();
+    const videoPromise =
+        envelopeVideo.play();
 
     if(videoPromise !== undefined){
+
         videoPromise.catch(function(){
-            console.log("Envelope video playback failed.");
+
+            console.log(
+                "Envelope video playback failed."
+            );
+
         });
+
     }
+
 
     envelopePoster.style.opacity = "0";
 
-    document.getElementById("tapText").style.opacity = "0";
+    document.getElementById(
+        "tapText"
+    ).style.opacity = "0";
+
 }
 
 
-/* iPhone + Android + Desktop */
-opening.addEventListener("click", openInvitation);
+/* Desktop */
 
-opening.addEventListener("touchend", function(event){
-
-    if(invitationOpened) return;
-
-    openInvitation(event);
-
-}, {passive:false});
+opening.addEventListener(
+    "click",
+    openInvitation
+);
 
 
-/* =========================================================
-   WHEN ENVELOPE VIDEO ENDS
-========================================================= */
+/* iPhone */
 
-envelopeVideo.addEventListener("ended", function(){
+opening.addEventListener(
+    "touchend",
+    function(event){
 
-    opening.classList.add("hide-opening");
+        if(invitationOpened){
+            return;
+        }
 
-    document.body.classList.add("opened");
+        openInvitation(event);
 
-    /* Start welcome */
-    welcomeVideo.currentTime = 0;
-
-    const welcomePromise = welcomeVideo.play();
-
-    if(welcomePromise !== undefined){
-        welcomePromise.catch(function(){
-            console.log("Welcome autoplay blocked.");
-        });
+    },
+    {
+        passive:false
     }
-
-});
-
-
-/* =========================================================
-   WELCOME ENDS → FAMILY VIDEO
-========================================================= */
-
-const familyVideo = document.getElementById("familyVideo");
-
-welcomeVideo.addEventListener("ended", function(){
-
-    familyVideo.currentTime = 0;
-
-    const familyPromise = familyVideo.play();
-
-    if(familyPromise !== undefined){
-        familyPromise.catch(function(){
-            console.log("Family autoplay waiting for visibility.");
-        });
-    }
-
-});
+);
 
 
-/* =========================================================
-   FAMILY AUTOPLAY BACKUP
-========================================================= */
+/* =====================================================
+   ENVELOPE FINISH
+===================================================== */
 
-const familyObserver = new IntersectionObserver(function(entries){
+envelopeVideo.addEventListener(
+    "ended",
+    function(){
 
-    entries.forEach(function(entry){
+        opening.style.opacity = "0";
 
-        if(entry.isIntersecting){
+        opening.style.visibility = "hidden";
 
-            const promise = familyVideo.play();
+        opening.style.pointerEvents = "none";
 
-            if(promise !== undefined){
-                promise.catch(function(){});
-            }
+        document.body.classList.add(
+            "opened"
+        );
+
+
+        welcomeVideo.currentTime = 0;
+
+        const welcomePromise =
+            welcomeVideo.play();
+
+        if(welcomePromise !== undefined){
+
+            welcomePromise.catch(function(){
+
+                console.log(
+                    "Welcome autoplay blocked."
+                );
+
+            });
 
         }
 
-    });
-
-},{
-    threshold:0.25
-});
-
-familyObserver.observe(familyVideo);
+    }
+);
 
 
-/* =========================================================
-   SCRATCH TO REVEAL
-========================================================= */
+/* =====================================================
+   WELCOME FINISH → FAMILY
+===================================================== */
 
-const scratchCanvas = document.getElementById("scratchCanvas");
-const scratchArea = document.querySelector(".scratch-area");
+const familyVideo =
+    document.getElementById(
+        "familyVideo"
+    );
 
-const scratchImage = new Image();
+welcomeVideo.addEventListener(
+    "ended",
+    function(){
 
-scratchImage.crossOrigin = "anonymous";
-scratchImage.src = "https://i.ibb.co/cSfFXzr6/IMG-8220.png";
+        familyVideo.currentTime = 0;
+
+        const familyPromise =
+            familyVideo.play();
+
+        if(familyPromise !== undefined){
+
+            familyPromise.catch(function(){
+
+                console.log(
+                    "Family autoplay waiting."
+                );
+
+            });
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   FAMILY AUTOPLAY BACKUP
+===================================================== */
+
+const familyObserver =
+    new IntersectionObserver(
+        function(entries){
+
+            entries.forEach(
+                function(entry){
+
+                    if(entry.isIntersecting){
+
+                        const promise =
+                            familyVideo.play();
+
+                        if(
+                            promise !== undefined
+                        ){
+
+                            promise.catch(
+                                function(){}
+                            );
+
+                        }
+
+                    }
+
+                }
+            );
+
+        },
+        {
+            threshold:0.25
+        }
+    );
+
+
+familyObserver.observe(
+    familyVideo
+);
+
+
+/* =====================================================
+   SCRATCH
+===================================================== */
+
+const scratchCanvas =
+    document.getElementById(
+        "scratchCanvas"
+    );
+
+const scratchArea =
+    document.querySelector(
+        ".scratch-area"
+    );
+
+const scratchImage =
+    new Image();
+
+scratchImage.crossOrigin =
+    "anonymous";
+
+scratchImage.src =
+    "https://i.ibb.co/cSfFXzr6/IMG-8220.png";
 
 let scratchCtx;
+
 let scratching = false;
+
 
 function setupScratch(){
 
-    const rect = scratchArea.getBoundingClientRect();
+    const rect =
+        scratchArea.getBoundingClientRect();
 
-    const dpr = window.devicePixelRatio || 1;
+    const dpr =
+        window.devicePixelRatio || 1;
 
-    scratchCanvas.width = rect.width * dpr;
-    scratchCanvas.height = rect.height * dpr;
+    scratchCanvas.width =
+        rect.width * dpr;
 
-    scratchCanvas.style.width = rect.width + "px";
-    scratchCanvas.style.height = rect.height + "px";
+    scratchCanvas.height =
+        rect.height * dpr;
 
-    scratchCtx = scratchCanvas.getContext("2d");
+    scratchCanvas.style.width =
+        rect.width + "px";
 
-    scratchCtx.setTransform(dpr,0,0,dpr,0,0);
+    scratchCanvas.style.height =
+        rect.height + "px";
 
-    scratchCtx.clearRect(0,0,rect.width,rect.height);
+    scratchCtx =
+        scratchCanvas.getContext("2d");
+
+    scratchCtx.setTransform(
+        dpr,
+        0,
+        0,
+        dpr,
+        0,
+        0
+    );
+
+    scratchCtx.clearRect(
+        0,
+        0,
+        rect.width,
+        rect.height
+    );
+
 
     if(scratchImage.complete){
 
@@ -1211,33 +1800,56 @@ function setupScratch(){
 
 }
 
-scratchImage.onload = setupScratch;
 
-window.addEventListener("resize", setupScratch);
+scratchImage.onload =
+    setupScratch;
+
+
+window.addEventListener(
+    "resize",
+    setupScratch
+);
 
 
 function getScratchPosition(event){
 
-    const rect = scratchCanvas.getBoundingClientRect();
+    const rect =
+        scratchCanvas.getBoundingClientRect();
 
     let clientX;
     let clientY;
 
-    if(event.touches && event.touches.length){
 
-        clientX = event.touches[0].clientX;
-        clientY = event.touches[0].clientY;
+    if(
+        event.touches &&
+        event.touches.length
+    ){
+
+        clientX =
+            event.touches[0].clientX;
+
+        clientY =
+            event.touches[0].clientY;
 
     }else{
 
-        clientX = event.clientX;
-        clientY = event.clientY;
+        clientX =
+            event.clientX;
+
+        clientY =
+            event.clientY;
 
     }
 
+
     return {
-        x:clientX - rect.left,
-        y:clientY - rect.top
+
+        x:
+            clientX - rect.left,
+
+        y:
+            clientY - rect.top
+
     };
 
 }
@@ -1245,17 +1857,30 @@ function getScratchPosition(event){
 
 function scratch(event){
 
-    if(!scratching || !scratchCtx) return;
+    if(
+        !scratching ||
+        !scratchCtx
+    ){
+
+        return;
+    }
 
     event.preventDefault();
 
-    const position = getScratchPosition(event);
+
+    const position =
+        getScratchPosition(event);
+
 
     scratchCtx.save();
 
-    scratchCtx.globalCompositeOperation = "destination-out";
+
+    scratchCtx.globalCompositeOperation =
+        "destination-out";
+
 
     scratchCtx.beginPath();
+
 
     scratchCtx.arc(
         position.x,
@@ -1265,108 +1890,199 @@ function scratch(event){
         Math.PI * 2
     );
 
+
     scratchCtx.fill();
+
 
     scratchCtx.restore();
 
 }
 
 
-scratchCanvas.addEventListener("mousedown",function(event){
+/* Mouse */
 
-    scratching = true;
-    scratch(event);
+scratchCanvas.addEventListener(
+    "mousedown",
+    function(event){
 
-});
+        scratching = true;
 
-scratchCanvas.addEventListener("mousemove",scratch);
+        scratch(event);
 
-window.addEventListener("mouseup",function(){
-
-    scratching = false;
-
-});
+    }
+);
 
 
-scratchCanvas.addEventListener("touchstart",function(event){
-
-    scratching = true;
-    scratch(event);
-
-},{passive:false});
+scratchCanvas.addEventListener(
+    "mousemove",
+    scratch
+);
 
 
-scratchCanvas.addEventListener("touchmove",scratch,{
-    passive:false
-});
+window.addEventListener(
+    "mouseup",
+    function(){
 
-scratchCanvas.addEventListener("touchend",function(){
+        scratching = false;
 
-    scratching = false;
+    }
+);
 
-});
+
+/* Touch */
+
+scratchCanvas.addEventListener(
+    "touchstart",
+    function(event){
+
+        scratching = true;
+
+        scratch(event);
+
+    },
+    {
+        passive:false
+    }
+);
 
 
-/* =========================================================
+scratchCanvas.addEventListener(
+    "touchmove",
+    scratch,
+    {
+        passive:false
+    }
+);
+
+
+scratchCanvas.addEventListener(
+    "touchend",
+    function(){
+
+        scratching = false;
+
+    }
+);
+
+
+/* =====================================================
    GOLDEN SPARKS
-========================================================= */
+===================================================== */
 
-const sparksCanvas = document.getElementById("sparks");
-const sparksCtx = sparksCanvas.getContext("2d");
+const sparksCanvas =
+    document.getElementById(
+        "sparks"
+    );
 
-let sparkWidth = window.innerWidth;
-let sparkHeight = window.innerHeight;
+const sparksCtx =
+    sparksCanvas.getContext("2d");
+
+
+let sparkWidth =
+    window.innerWidth;
+
+let sparkHeight =
+    window.innerHeight;
+
 
 function resizeSparks(){
 
-    sparkWidth = window.innerWidth;
-    sparkHeight = window.innerHeight;
+    sparkWidth =
+        window.innerWidth;
 
-    const dpr = window.devicePixelRatio || 1;
+    sparkHeight =
+        window.innerHeight;
 
-    sparksCanvas.width = sparkWidth * dpr;
-    sparksCanvas.height = sparkHeight * dpr;
 
-    sparksCanvas.style.width = sparkWidth + "px";
-    sparksCanvas.style.height = sparkHeight + "px";
+    const dpr =
+        window.devicePixelRatio || 1;
 
-    sparksCtx.setTransform(dpr,0,0,dpr,0,0);
+
+    sparksCanvas.width =
+        sparkWidth * dpr;
+
+    sparksCanvas.height =
+        sparkHeight * dpr;
+
+
+    sparksCanvas.style.width =
+        sparkWidth + "px";
+
+    sparksCanvas.style.height =
+        sparkHeight + "px";
+
+
+    sparksCtx.setTransform(
+        dpr,
+        0,
+        0,
+        dpr,
+        0,
+        0
+    );
 
 }
 
+
 resizeSparks();
 
-window.addEventListener("resize",resizeSparks);
+
+window.addEventListener(
+    "resize",
+    resizeSparks
+);
 
 
 let sparks = [];
 
+
 function createGoldenBurst(){
 
-    const centerX = sparkWidth / 2;
-    const centerY = sparkHeight / 2;
+    const centerX =
+        sparkWidth / 2;
 
-    for(let i=0;i<55;i++){
+    const centerY =
+        sparkHeight / 2;
+
+
+    for(
+        let i = 0;
+        i < 55;
+        i++
+    ){
 
         const angle =
-            Math.random() * Math.PI * 2;
+            Math.random() *
+            Math.PI * 2;
 
         const speed =
-            1.5 + Math.random() * 4;
+            1.5 +
+            Math.random() * 4;
+
 
         sparks.push({
 
             x:centerX,
+
             y:centerY,
 
-            vx:Math.cos(angle) * speed,
-            vy:Math.sin(angle) * speed,
+            vx:
+                Math.cos(angle) *
+                speed,
 
-            size:1 + Math.random() * 2,
+            vy:
+                Math.sin(angle) *
+                speed,
+
+            size:
+                1 +
+                Math.random() * 2,
 
             life:1,
 
-            decay:.015 + Math.random() * .02
+            decay:
+                .015 +
+                Math.random() * .02
 
         });
 
@@ -1379,19 +2095,33 @@ function createAmbientSpark(){
 
     sparks.push({
 
-        x:Math.random() * sparkWidth,
+        x:
+            Math.random() *
+            sparkWidth,
 
-        y:Math.random() * sparkHeight,
+        y:
+            Math.random() *
+            sparkHeight,
 
-        vx:(Math.random()-.5) * .3,
+        vx:
+            (Math.random() - .5) *
+            .3,
 
-        vy:-.3 - Math.random() * .5,
+        vy:
+            -.3 -
+            Math.random() * .5,
 
-        size:.5 + Math.random() * 1.4,
+        size:
+            .5 +
+            Math.random() * 1.4,
 
-        life:.3 + Math.random() * .5,
+        life:
+            .3 +
+            Math.random() * .5,
 
-        decay:.006 + Math.random() * .008
+        decay:
+            .006 +
+            Math.random() * .008
 
     });
 
@@ -1407,31 +2137,46 @@ function animateSparks(){
         sparkHeight
     );
 
-    if(Math.random() < .12){
+
+    if(
+        Math.random() < .12
+    ){
 
         createAmbientSpark();
 
     }
 
-    for(let i=sparks.length-1;i>=0;i--){
 
-        const s = sparks[i];
+    for(
+        let i = sparks.length - 1;
+        i >= 0;
+        i--
+    ){
+
+        const s =
+            sparks[i];
+
 
         s.x += s.vx;
+
         s.y += s.vy;
 
         s.vy += .015;
 
         s.life -= s.decay;
 
+
         if(s.life <= 0){
 
             sparks.splice(i,1);
+
             continue;
 
         }
 
+
         sparksCtx.beginPath();
+
 
         sparksCtx.arc(
             s.x,
@@ -1441,82 +2186,145 @@ function animateSparks(){
             Math.PI * 2
         );
 
+
         sparksCtx.fillStyle =
             "rgba(184,151,104," +
             Math.max(0,s.life) +
             ")";
 
+
         sparksCtx.shadowBlur = 7;
+
 
         sparksCtx.shadowColor =
             "rgba(184,151,104,.8)";
+
 
         sparksCtx.fill();
 
     }
 
-    requestAnimationFrame(animateSparks);
+
+    requestAnimationFrame(
+        animateSparks
+    );
 
 }
+
 
 animateSparks();
 
 
-/* =========================================================
+/* =====================================================
    PETALS
-========================================================= */
+===================================================== */
 
-const petalsCanvas = document.getElementById("petals");
-const petalsCtx = petalsCanvas.getContext("2d");
+const petalsCanvas =
+    document.getElementById(
+        "petals"
+    );
 
-let petalWidth = window.innerWidth;
-let petalHeight = window.innerHeight;
+const petalsCtx =
+    petalsCanvas.getContext("2d");
+
+
+let petalWidth =
+    window.innerWidth;
+
+let petalHeight =
+    window.innerHeight;
+
 
 function resizePetals(){
 
-    petalWidth = window.innerWidth;
-    petalHeight = window.innerHeight;
+    petalWidth =
+        window.innerWidth;
 
-    const dpr = window.devicePixelRatio || 1;
+    petalHeight =
+        window.innerHeight;
 
-    petalsCanvas.width = petalWidth * dpr;
-    petalsCanvas.height = petalHeight * dpr;
 
-    petalsCanvas.style.width = petalWidth + "px";
-    petalsCanvas.style.height = petalHeight + "px";
+    const dpr =
+        window.devicePixelRatio || 1;
 
-    petalsCtx.setTransform(dpr,0,0,dpr,0,0);
+
+    petalsCanvas.width =
+        petalWidth * dpr;
+
+    petalsCanvas.height =
+        petalHeight * dpr;
+
+
+    petalsCanvas.style.width =
+        petalWidth + "px";
+
+    petalsCanvas.style.height =
+        petalHeight + "px";
+
+
+    petalsCtx.setTransform(
+        dpr,
+        0,
+        0,
+        dpr,
+        0,
+        0
+    );
 
 }
 
+
 resizePetals();
 
-window.addEventListener("resize",resizePetals);
+
+window.addEventListener(
+    "resize",
+    resizePetals
+);
 
 
 const petals = [];
 
-for(let i=0;i<40;i++){
+
+for(
+    let i = 0;
+    i < 40;
+    i++
+){
 
     petals.push({
 
-        x:Math.random() * petalWidth,
+        x:
+            Math.random() *
+            petalWidth,
 
-        y:Math.random() * petalHeight,
+        y:
+            Math.random() *
+            petalHeight,
 
-        size:3.5 + Math.random() * 2,
+        size:
+            3.5 +
+            Math.random() * 2,
 
-        speed:.25 + Math.random() * .6,
+        speed:
+            .25 +
+            Math.random() * .6,
 
-        sway:Math.random() * Math.PI * 2,
+        sway:
+            Math.random() *
+            Math.PI * 2,
 
-        rotation:Math.random() * Math.PI,
+        rotation:
+            Math.random() *
+            Math.PI,
 
         rotationSpeed:
-            -.02 + Math.random() * .04,
+            -.02 +
+            Math.random() * .04,
 
         opacity:
-            .35 + Math.random() * .5
+            .35 +
+            Math.random() * .5
 
     });
 
@@ -1532,57 +2340,89 @@ function drawPetals(){
         petalHeight
     );
 
-    petals.forEach(function(p){
 
-        p.y += p.speed;
+    petals.forEach(
+        function(p){
 
-        p.sway += .01;
+            p.y += p.speed;
 
-        p.x += Math.sin(p.sway) * .25;
+            p.sway += .01;
 
-        p.rotation += p.rotationSpeed;
+            p.x +=
+                Math.sin(p.sway) *
+                .25;
 
-        if(p.y > petalHeight + 10){
+            p.rotation +=
+                p.rotationSpeed;
 
-            p.y = -10;
-            p.x = Math.random() * petalWidth;
+
+            if(
+                p.y >
+                petalHeight + 10
+            ){
+
+                p.y = -10;
+
+                p.x =
+                    Math.random() *
+                    petalWidth;
+
+            }
+
+
+            petalsCtx.save();
+
+
+            petalsCtx.translate(
+                p.x,
+                p.y
+            );
+
+
+            petalsCtx.rotate(
+                p.rotation
+            );
+
+
+            petalsCtx.globalAlpha =
+                p.opacity;
+
+
+            petalsCtx.fillStyle =
+                Math.random() > .5
+                ? "rgba(215,190,165,.8)"
+                : "rgba(235,218,198,.85)";
+
+
+            petalsCtx.beginPath();
+
+
+            petalsCtx.ellipse(
+                0,
+                0,
+                p.size,
+                p.size * .55,
+                0,
+                0,
+                Math.PI * 2
+            );
+
+
+            petalsCtx.fill();
+
+
+            petalsCtx.restore();
 
         }
+    );
 
-        petalsCtx.save();
 
-        petalsCtx.translate(p.x,p.y);
-
-        petalsCtx.rotate(p.rotation);
-
-        petalsCtx.globalAlpha = p.opacity;
-
-        petalsCtx.fillStyle =
-            Math.random() > .5
-            ? "rgba(215,190,165,.8)"
-            : "rgba(235,218,198,.85)";
-
-        petalsCtx.beginPath();
-
-        petalsCtx.ellipse(
-            0,
-            0,
-            p.size,
-            p.size * .55,
-            0,
-            0,
-            Math.PI * 2
-        );
-
-        petalsCtx.fill();
-
-        petalsCtx.restore();
-
-    });
-
-    requestAnimationFrame(drawPetals);
+    requestAnimationFrame(
+        drawPetals
+    );
 
 }
+
 
 drawPetals();
 
