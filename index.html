@@ -716,6 +716,9 @@ section{
   font-weight:600;
 }
 
+
+/* LAST FRAME FLOWERS — NOT FLIPPED */
+
 .last-flower-tl{
   position:absolute;
   top:-10px;
@@ -723,7 +726,7 @@ section{
   width:115px;
   opacity:0.95;
   pointer-events:none;
-  animation:floatAnimation 4s ease-in-out infinite;
+  animation:lastFlowerFloat 4s ease-in-out infinite;
   z-index:2;
 }
 
@@ -734,8 +737,22 @@ section{
   width:125px;
   opacity:0.95;
   pointer-events:none;
-  animation:floatAnimation 4s ease-in-out infinite 2s;
+  animation:lastFlowerFloat 4s ease-in-out infinite 2s;
   z-index:2;
+}
+
+@keyframes lastFlowerFloat{
+  0%{
+    transform:translateY(0px) rotate(0deg);
+  }
+
+  50%{
+    transform:translateY(-3px) rotate(1deg);
+  }
+
+  100%{
+    transform:translateY(0px) rotate(0deg);
+  }
 }
 
 
