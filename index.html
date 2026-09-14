@@ -716,43 +716,34 @@ section{
   font-weight:600;
 }
 
-
-/* LAST FRAME FLOWERS — NOT FLIPPED */
-
 .last-flower-tl{
-  position:absolute;
-  top:-10px;
-  left:-10px;
-  width:115px;
+  position:absolute !important;
+  top:-10px !important;
+  left:-10px !important;
+  bottom:auto !important;
+  right:auto !important;
+  width:115px !important;
+  height:auto !important;
   opacity:0.95;
   pointer-events:none;
-  animation:lastFlowerFloat 4s ease-in-out infinite;
-  z-index:2;
+  transform:none !important;
+  animation:none !important;
+  z-index:5;
 }
 
 .last-flower-br{
-  position:absolute;
-  bottom:-10px;
-  right:-10px;
-  width:125px;
+  position:absolute !important;
+  bottom:-10px !important;
+  right:-10px !important;
+  top:auto !important;
+  left:auto !important;
+  width:125px !important;
+  height:auto !important;
   opacity:0.95;
   pointer-events:none;
-  animation:lastFlowerFloat 4s ease-in-out infinite 2s;
-  z-index:2;
-}
-
-@keyframes lastFlowerFloat{
-  0%{
-    transform:translateY(0px) rotate(0deg);
-  }
-
-  50%{
-    transform:translateY(-3px) rotate(1deg);
-  }
-
-  100%{
-    transform:translateY(0px) rotate(0deg);
-  }
+  transform:none !important;
+  animation:none !important;
+  z-index:5;
 }
 
 
