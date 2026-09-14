@@ -738,7 +738,7 @@ section{
 
 <!-- ================= MUSIC ================= -->
 
-<audio id="music" preload="auto" loop>
+<audio id="music" preload="auto" loop autoplay>
   <source src="alikesath.mp3" type="audio/mpeg">
 </audio>
 
@@ -1184,21 +1184,23 @@ tapOverlay.addEventListener("click", function(){
 
   /* Start music FIRST */
 
-  music.currentTime = 0;
-  music.muted = false;
-  music.volume = 0.65;
+  /* START MUSIC DIRECTLY FROM TAP */
 
-  const musicPromise = music.play();
+music.muted = false;
+music.volume = 0.65;
+music.currentTime = 0;
 
-  if(musicPromise !== undefined){
+music.load();
 
-    musicPromise.catch(function(error){
+music.play().then(function(){
 
-      console.log("Music could not autoplay:",error);
+  console.log("Music started successfully!");
 
-    });
+}).catch(function(error){
 
-  }
+  console.log("Music blocked:", error);
+
+});
 
 
   /* Golden opening burst */
