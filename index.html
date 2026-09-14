@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -113,6 +112,7 @@ section{
   padding-bottom:85px;
   cursor:pointer;
   touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
 }
 
 #tapText{
@@ -159,11 +159,9 @@ section{
   backdrop-filter:blur(6px);
   cursor:pointer;
   z-index:10001;
-
   opacity:0;
   visibility:hidden;
   pointer-events:none;
-
   transition:.3s ease;
 }
 
@@ -772,11 +770,22 @@ section{
 
 <!-- ================= MUSIC ================= -->
 
-<audio id="music" preload="auto" loop>
-  <source src="alikesath.mp3" type="audio/mpeg">
+<audio
+  id="music"
+  preload="auto"
+  loop
+  playsinline
+>
+  <source
+    src="alikesath.mp3"
+    type="audio/mpeg"
+  >
 </audio>
 
-<button id="musicToggle" aria-label="Mute music">
+<button
+  id="musicToggle"
+  aria-label="Mute music"
+>
   ♫
 </button>
 
@@ -796,7 +805,10 @@ section{
   playsinline
   preload="auto"
 >
-  <source src="envelope.mp4" type="video/mp4">
+  <source
+    src="envelope.mp4"
+    type="video/mp4"
+  >
 </video>
 
 <div id="tapOverlay">
@@ -821,7 +833,12 @@ section{
       playsinline
       preload="auto"
     >
-      <source src="welcome.mp4" type="video/mp4">
+
+      <source
+        src="welcome.mp4"
+        type="video/mp4"
+      >
+
     </video>
 
   </div>
@@ -884,7 +901,12 @@ section{
       loop
       preload="auto"
     >
-      <source src="family.mp4" type="video/mp4">
+
+      <source
+        src="family.mp4"
+        type="video/mp4"
+      >
+
     </video>
 
   </div>
@@ -933,7 +955,9 @@ section{
         alt="Wedding Date"
       >
 
-      <canvas id="scratchCanvas"></canvas>
+      <canvas
+        id="scratchCanvas">
+      </canvas>
 
     </div>
 
@@ -973,23 +997,54 @@ section{
     <div class="timeline">
 
       <div class="timeline-item">
-        <div class="timeline-time">7:00 PM</div>
-        <div class="timeline-event">Guest Arrival</div>
+
+        <div class="timeline-time">
+          7:00 PM
+        </div>
+
+        <div class="timeline-event">
+          Guest Arrival
+        </div>
+
       </div>
 
-      <div class="timeline-item">
-        <div class="timeline-time">8:00 PM</div>
-        <div class="timeline-event">Bride Entry</div>
-      </div>
 
       <div class="timeline-item">
-        <div class="timeline-time">8:30 PM</div>
-        <div class="timeline-event">Nikkah Ceremony</div>
+
+        <div class="timeline-time">
+          8:00 PM
+        </div>
+
+        <div class="timeline-event">
+          Bride Entry
+        </div>
+
       </div>
 
+
       <div class="timeline-item">
-        <div class="timeline-time">9:00 PM</div>
-        <div class="timeline-event">Buffet Opening</div>
+
+        <div class="timeline-time">
+          8:30 PM
+        </div>
+
+        <div class="timeline-event">
+          Nikkah Ceremony
+        </div>
+
+      </div>
+
+
+      <div class="timeline-item">
+
+        <div class="timeline-time">
+          9:00 PM
+        </div>
+
+        <div class="timeline-event">
+          Buffet Opening
+        </div>
+
       </div>
 
     </div>
@@ -1170,40 +1225,54 @@ section{
    ELEMENTS
 ========================================================= */
 
-const opening = document.getElementById("opening");
-const envelopePoster = document.getElementById("envelopePoster");
-const envelopeVideo = document.getElementById("envelopeVideo");
-const tapOverlay = document.getElementById("tapOverlay");
+const opening =
+  document.getElementById("opening");
 
-const welcomeVideo = document.getElementById("welcomeVideo");
-const familyVideo = document.getElementById("familyVideo");
+const envelopePoster =
+  document.getElementById("envelopePoster");
 
-const music = document.getElementById("music");
-const musicToggle = document.getElementById("musicToggle");
+const envelopeVideo =
+  document.getElementById("envelopeVideo");
+
+const tapOverlay =
+  document.getElementById("tapOverlay");
+
+const welcomeVideo =
+  document.getElementById("welcomeVideo");
+
+const familyVideo =
+  document.getElementById("familyVideo");
+
+const music =
+  document.getElementById("music");
+
+const musicToggle =
+  document.getElementById("musicToggle");
 
 let invitationOpened = false;
 let musicStarted = false;
 
 
 /* =========================================================
-   START MUSIC
-   FIRST TOUCH ON TAP TO OPEN
+   MUSIC
+   IMPORTANT:
+   PLAY IS CALLED DIRECTLY FROM THE USER TOUCH.
 ========================================================= */
 
-function startMusic(){
+function playMusicFromUserGesture(){
 
   if(musicStarted){
     return;
   }
 
-  music.muted = false;
   music.volume = 0.65;
+  music.muted = false;
 
-  const musicPromise = music.play();
+  const promise = music.play();
 
-  if(musicPromise !== undefined){
+  if(promise !== undefined){
 
-    musicPromise.then(function(){
+    promise.then(function(){
 
       musicStarted = true;
 
@@ -1216,21 +1285,16 @@ function startMusic(){
         "Mute music"
       );
 
-      console.log("Music started automatically.");
+      console.log(
+        "MUSIC PLAYING"
+      );
 
     }).catch(function(error){
 
       console.log(
-        "Music could not start:",
+        "MUSIC PLAY FAILED:",
         error
       );
-
-      /*
-        Do NOT mark music as started if
-        Safari blocks the first attempt.
-      */
-
-      musicStarted = false;
 
     });
 
@@ -1250,11 +1314,15 @@ function startMusic(){
 function openInvitation(event){
 
   if(event){
+
     event.preventDefault();
+
   }
 
   if(invitationOpened){
+
     return;
+
   }
 
   invitationOpened = true;
@@ -1265,45 +1333,45 @@ function openInvitation(event){
   musicToggle.classList.add("show");
 
 
-  /* =========================================
-     START MUSIC
-  ========================================= */
+  /* START MUSIC */
 
-  startMusic();
+  playMusicFromUserGesture();
 
 
-  /* =========================================
-     GOLDEN BURST
-  ========================================= */
+  /* GOLDEN BURST */
 
   openingBurst();
 
 
-  /* =========================================
-     ENVELOPE VIDEO
-  ========================================= */
+  /* ENVELOPE */
 
-  envelopePoster.style.display = "none";
+  envelopePoster.style.display =
+    "none";
 
-  envelopeVideo.style.display = "block";
+  envelopeVideo.style.display =
+    "block";
 
   envelopeVideo.currentTime = 0;
 
   envelopeVideo.muted = false;
 
+
   const videoPromise =
     envelopeVideo.play();
 
+
   if(videoPromise !== undefined){
 
-    videoPromise.catch(function(error){
+    videoPromise.catch(
+      function(error){
 
-      console.log(
-        "Envelope video could not play:",
-        error
-      );
+        console.log(
+          "Envelope video error:",
+          error
+        );
 
-    });
+      }
+    );
 
   }
 
@@ -1311,19 +1379,17 @@ function openInvitation(event){
 
 
 /* =========================================================
-   iPHONE / SAFARI
-   FIRST FINGER TOUCH STARTS MUSIC
+   iPHONE SAFARI
+   REAL TOUCH END EVENT
 ========================================================= */
 
 tapOverlay.addEventListener(
-  "pointerdown",
+  "touchend",
   function(event){
 
-    if(event.pointerType === "touch"){
+    event.preventDefault();
 
-      startMusic();
-
-    }
+    openInvitation(event);
 
   },
   {
@@ -1333,33 +1399,20 @@ tapOverlay.addEventListener(
 
 
 /* =========================================================
-   TOUCH BACKUP
-========================================================= */
-
-tapOverlay.addEventListener(
-  "touchstart",
-  function(event){
-
-    if(!invitationOpened){
-
-      startMusic();
-
-    }
-
-  },
-  {
-    passive:false
-  }
-);
-
-
-/* =========================================================
-   TAP TO OPEN
+   DESKTOP / NON-TOUCH
 ========================================================= */
 
 tapOverlay.addEventListener(
   "click",
   function(event){
+
+    if(
+      event.detail === 0
+    ){
+
+      return;
+
+    }
 
     openInvitation(event);
 
@@ -1381,7 +1434,9 @@ envelopeVideo.addEventListener(
 
     welcomeVideo.muted = true;
 
-    welcomeVideo.play().catch(function(){});
+    welcomeVideo.play().catch(
+      function(){}
+    );
 
   }
 );
@@ -1399,7 +1454,9 @@ welcomeVideo.addEventListener(
 
     familyVideo.muted = true;
 
-    familyVideo.play().catch(function(){});
+    familyVideo.play().catch(
+      function(){}
+    );
 
   }
 );
@@ -1419,24 +1476,32 @@ musicToggle.addEventListener(
 
       music.muted = false;
 
-      musicToggle.textContent = "♫";
+      musicToggle.textContent =
+        "♫";
 
-      musicToggle.classList.remove("muted");
+      musicToggle.classList.remove(
+        "muted"
+      );
 
       musicToggle.setAttribute(
         "aria-label",
         "Mute music"
       );
 
-      music.play().catch(function(){});
+      music.play().catch(
+        function(){}
+      );
 
     }else{
 
       music.muted = true;
 
-      musicToggle.textContent = "🔇";
+      musicToggle.textContent =
+        "🔇";
 
-      musicToggle.classList.add("muted");
+      musicToggle.classList.add(
+        "muted"
+      );
 
       musicToggle.setAttribute(
         "aria-label",
@@ -1454,7 +1519,9 @@ musicToggle.addEventListener(
 ========================================================= */
 
 const sparkCanvas =
-  document.getElementById("sparkCanvas");
+  document.getElementById(
+    "sparkCanvas"
+  );
 
 const sparkCtx =
   sparkCanvas.getContext("2d");
@@ -1474,17 +1541,23 @@ function resizeSparkCanvas(){
 
 resizeSparkCanvas();
 
+
 window.addEventListener(
   "resize",
   resizeSparkCanvas
 );
 
 
-function createSpark(x,y,burst=false){
+function createSpark(
+  x,
+  y,
+  burst=false
+){
 
   sparks.push({
 
     x:x,
+
     y:y,
 
     vx:
@@ -1521,9 +1594,18 @@ function openingBurst(){
   const y =
     window.innerHeight/2;
 
-  for(let i=0;i<65;i++){
 
-    createSpark(x,y,true);
+  for(
+    let i=0;
+    i<65;
+    i++
+  ){
+
+    createSpark(
+      x,
+      y,
+      true
+    );
 
   }
 
@@ -1546,20 +1628,24 @@ function drawSparks(){
     i--
   ){
 
-    const s=sparks[i];
+    const s =
+      sparks[i];
 
-    s.x+=s.vx;
+    s.x += s.vx;
 
-    s.y+=s.vy;
+    s.y += s.vy;
 
-    s.vy+=.015;
+    s.vy += .015;
 
-    s.life-=s.decay;
+    s.life -= s.decay;
 
 
     if(s.life<=0){
 
-      sparks.splice(i,1);
+      sparks.splice(
+        i,
+        1
+      );
 
       continue;
 
@@ -1600,7 +1686,9 @@ drawSparks();
 ========================================================= */
 
 const petalCanvas =
-  document.getElementById("petalCanvas");
+  document.getElementById(
+    "petalCanvas"
+  );
 
 const petalCtx =
   petalCanvas.getContext("2d");
@@ -1619,6 +1707,7 @@ function resizePetalCanvas(){
 }
 
 resizePetalCanvas();
+
 
 window.addEventListener(
   "resize",
@@ -1690,7 +1779,7 @@ function drawPetals(){
         window.innerHeight+10
       ){
 
-        p.y=-10;
+        p.y = -10;
 
         p.x =
           Math.random() *
@@ -1704,12 +1793,14 @@ function drawPetals(){
         window.innerWidth+10
       ){
 
-        p.x=-10;
+        p.x = -10;
 
       }
 
 
-      if(p.x < -10){
+      if(
+        p.x < -10
+      ){
 
         p.x =
           window.innerWidth+10;
@@ -1777,7 +1868,9 @@ const familyObserver =
 
             familyVideo
               .play()
-              .catch(function(){});
+              .catch(
+                function(){}
+              );
 
           }
 
@@ -1906,6 +1999,7 @@ function getScratchPosition(event){
 
 
   let clientX;
+
   let clientY;
 
 
@@ -1946,7 +2040,8 @@ function getScratchPosition(event){
 
 function scratch(event){
 
-  if(!scratching) return;
+  if(!scratching)
+    return;
 
   event.preventDefault();
 
@@ -1957,7 +2052,9 @@ function scratch(event){
 
 
   const pos =
-    getScratchPosition(event);
+    getScratchPosition(
+      event
+    );
 
 
   ctx.globalCompositeOperation =
@@ -2022,14 +2119,18 @@ scratchCanvas.addEventListener(
     scratch(event);
 
   },
-  {passive:false}
+  {
+    passive:false
+  }
 );
 
 
 scratchCanvas.addEventListener(
   "touchmove",
   scratch,
-  {passive:false}
+  {
+    passive:false
+  }
 );
 
 
