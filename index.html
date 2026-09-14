@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -1207,12 +1208,20 @@ function openInvitation(event){
 
 
   /* =========================================
-     START MUSIC DIRECTLY FROM THE TAP
+     START MUSIC DIRECTLY FROM THE SAME TAP
+     iPHONE / SAFARI FRIENDLY
   ========================================= */
 
   music.muted = false;
   music.volume = 0.65;
   music.currentTime = 0;
+
+  /*
+     Calling load() first makes sure the audio
+     element is ready before play() is requested.
+  */
+
+  music.load();
 
   const musicPromise = music.play();
 
@@ -1233,10 +1242,32 @@ function openInvitation(event){
 
     }).catch(function(error){
 
+      /*
+         Fallback: try play once more while the
+         original tap interaction is still active.
+      */
+
       console.log(
-        "Music could not start:",
+        "First music play attempt failed:",
         error
       );
+
+      music.muted = false;
+
+      music.play().then(function(){
+
+        musicToggle.textContent = "♪";
+
+        musicToggle.classList.remove("muted");
+
+      }).catch(function(error2){
+
+        console.log(
+          "Music could not start:",
+          error2
+        );
+
+      });
 
     });
 
@@ -1976,4 +2007,4 @@ scratchCanvas.addEventListener(
 </body>
 </html>
 
-  
+
