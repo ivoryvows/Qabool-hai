@@ -437,16 +437,6 @@ section{
   color:#8c7853;font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;
 }
 
-.last-flower-tl{
-  position:absolute;top:-5px;left:-5px;width:115px;opacity:.95;
-  pointer-events:none;animation:flowerFloat 4s ease-in-out infinite;
-}
-
-.last-flower-br{
-  position:absolute;bottom:-5px;right:-5px;width:125px;opacity:.95;
-  pointer-events:none;animation:flowerFloat 4s ease-in-out infinite 2s;
-}
-
 
 /* =====================================================
    MOBILE
@@ -493,8 +483,16 @@ section{
 <canvas id="sparkCanvas"></canvas>
 
 
-<audio id="music" preload="auto" loop>
-  <source src="alikesath.mp3" type="audio/mpeg">
+<!-- =====================================================
+     MUSIC
+     DIRECT SRC — IMPORTANT FOR IPHONE
+===================================================== -->
+
+<audio
+  id="music"
+  src="./alikesath.mp3"
+  preload="auto"
+  loop>
 </audio>
 
 
@@ -502,6 +500,10 @@ section{
   ♫
 </button>
 
+
+<!-- =====================================================
+     OPENING
+===================================================== -->
 
 <div id="opening">
 
@@ -511,13 +513,15 @@ section{
     alt="Wedding Invitation"
   >
 
+  <!-- MUTED VIDEO — MUSIC IS SEPARATE -->
   <video
     id="envelopeVideo"
+    muted
     playsinline
     webkit-playsinline
     preload="auto">
 
-    <source src="envelope.mp4" type="video/mp4">
+    <source src="./envelope.mp4" type="video/mp4">
 
   </video>
 
@@ -917,7 +921,7 @@ section{
 
 /* =====================================================
    OPENING + MUSIC
-   SAME METHOD AS YOUR OLD WORKING INVITE
+   IPHONE / SAFARI FRIENDLY
 ===================================================== */
 
 const opening =
@@ -947,7 +951,11 @@ document.getElementById("musicToggle");
 let invitationOpened=false;
 
 
-/* Preload envelope */
+/* =====================================================
+   PRELOAD BOTH MEDIA FILES
+===================================================== */
+
+music.load();
 
 envelopeVideo.load();
 
@@ -956,11 +964,7 @@ envelopeVideo.load();
    OPEN INVITATION
 ===================================================== */
 
-function openInvitation(event){
-
-    if(event){
-        event.preventDefault();
-    }
+function openInvitation(){
 
     if(invitationOpened){
         return;
@@ -969,14 +973,12 @@ function openInvitation(event){
     invitationOpened=true;
 
 
-    /*
-      IMPORTANT:
-      Music starts DIRECTLY from the user's tap.
-      This is the same method that worked
-      in your previous invitation.
-    */
+    /* ================================================
+       MUSIC STARTS DIRECTLY FROM USER'S TAP
+       DO THIS FIRST
+    ================================================ */
 
-    music.volume=0.65;
+    music.volume=1;
     music.muted=false;
 
     music.play()
@@ -995,47 +997,59 @@ function openInvitation(event){
     .catch(function(error){
 
         console.log(
-            "Music could not start:",
+            "Music play failed:",
             error
         );
 
     });
 
 
-    /* Show music button */
+    /* ================================================
+       SHOW MUSIC BUTTON
+    ================================================ */
 
     musicToggle.classList.add("show");
 
 
-    /* Opening sparkle */
+    /* ================================================
+       OPENING SPARKLE
+    ================================================ */
 
     openingBurst();
 
 
-    /* Switch poster to video */
+    /* ================================================
+       SHOW ENVELOPE VIDEO
+    ================================================ */
 
     envelopePoster.style.display="none";
 
     envelopeVideo.style.display="block";
 
-    envelopeVideo.currentTime=0;
 
-    envelopeVideo.muted=false;
+    try{
+
+        envelopeVideo.currentTime=0;
+
+    }catch(e){}
 
 
-    const videoPromise =
+    /* ================================================
+       ENVELOPE VIDEO REMAINS MUTED
+       MUSIC IS THE ONLY SOUND
+    ================================================ */
+
+    envelopeVideo.muted=true;
+
+    envelopeVideo.volume=0;
+
+
+    const playPromise=
         envelopeVideo.play();
 
-    if(videoPromise){
+    if(playPromise){
 
-        videoPromise.catch(function(error){
-
-            console.log(
-                "Envelope video could not play:",
-                error
-            );
-
-        });
+        playPromise.catch(function(){});
 
     }
 
@@ -1043,7 +1057,7 @@ function openInvitation(event){
 
 
 /* =====================================================
-   iPHONE / SAFARI TOUCH
+   IPHONE / SAFARI TOUCH
 ===================================================== */
 
 tapOverlay.addEventListener(
@@ -1052,7 +1066,7 @@ tapOverlay.addEventListener(
 
         event.preventDefault();
 
-        openInvitation(event);
+        openInvitation();
 
     },
     {
@@ -1062,18 +1076,14 @@ tapOverlay.addEventListener(
 
 
 /* =====================================================
-   DESKTOP FALLBACK
+   DESKTOP / NORMAL CLICK
 ===================================================== */
 
 tapOverlay.addEventListener(
     "click",
-    function(event){
+    function(){
 
-        if(!invitationOpened){
-
-            openInvitation(event);
-
-        }
+        openInvitation();
 
     }
 );
