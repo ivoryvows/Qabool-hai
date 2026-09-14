@@ -777,7 +777,7 @@ section{
 </audio>
 
 <button id="musicToggle" aria-label="Mute music">
-  ♪
+  ♫
 </button>
 
 
@@ -1182,11 +1182,69 @@ const music = document.getElementById("music");
 const musicToggle = document.getElementById("musicToggle");
 
 let invitationOpened = false;
+let musicStarted = false;
 
 
 /* =========================================================
-   OPENING TAP
-   FIRST TAP = MUSIC + ENVELOPE VIDEO
+   START MUSIC
+   FIRST TOUCH ON TAP TO OPEN
+========================================================= */
+
+function startMusic(){
+
+  if(musicStarted){
+    return;
+  }
+
+  music.muted = false;
+  music.volume = 0.65;
+
+  const musicPromise = music.play();
+
+  if(musicPromise !== undefined){
+
+    musicPromise.then(function(){
+
+      musicStarted = true;
+
+      musicToggle.textContent = "♫";
+
+      musicToggle.classList.remove("muted");
+
+      musicToggle.setAttribute(
+        "aria-label",
+        "Mute music"
+      );
+
+      console.log("Music started automatically.");
+
+    }).catch(function(error){
+
+      console.log(
+        "Music could not start:",
+        error
+      );
+
+      /*
+        Do NOT mark music as started if
+        Safari blocks the first attempt.
+      */
+
+      musicStarted = false;
+
+    });
+
+  }else{
+
+    musicStarted = true;
+
+  }
+
+}
+
+
+/* =========================================================
+   OPEN INVITATION
 ========================================================= */
 
 function openInvitation(event){
@@ -1208,70 +1266,10 @@ function openInvitation(event){
 
 
   /* =========================================
-     START MUSIC DIRECTLY FROM THE SAME TAP
-     iPHONE / SAFARI FRIENDLY
+     START MUSIC
   ========================================= */
 
-  music.muted = false;
-  music.volume = 0.65;
-  music.currentTime = 0;
-
-  /*
-     Calling load() first makes sure the audio
-     element is ready before play() is requested.
-  */
-
-  music.load();
-
-  const musicPromise = music.play();
-
-  if(musicPromise !== undefined){
-
-    musicPromise.then(function(){
-
-      musicToggle.textContent = "♪";
-
-      musicToggle.classList.remove("muted");
-
-      musicToggle.setAttribute(
-        "aria-label",
-        "Mute music"
-      );
-
-      console.log("Music started!");
-
-    }).catch(function(error){
-
-      /*
-         Fallback: try play once more while the
-         original tap interaction is still active.
-      */
-
-      console.log(
-        "First music play attempt failed:",
-        error
-      );
-
-      music.muted = false;
-
-      music.play().then(function(){
-
-        musicToggle.textContent = "♪";
-
-        musicToggle.classList.remove("muted");
-
-      }).catch(function(error2){
-
-        console.log(
-          "Music could not start:",
-          error2
-        );
-
-      });
-
-    });
-
-  }
+  startMusic();
 
 
   /* =========================================
@@ -1290,6 +1288,8 @@ function openInvitation(event){
   envelopeVideo.style.display = "block";
 
   envelopeVideo.currentTime = 0;
+
+  envelopeVideo.muted = false;
 
   const videoPromise =
     envelopeVideo.play();
@@ -1311,9 +1311,50 @@ function openInvitation(event){
 
 
 /* =========================================================
-   IMPORTANT:
-   ONLY ONE CLICK HANDLER
-   MUSIC STARTS ON SAME TAP
+   iPHONE / SAFARI
+   FIRST FINGER TOUCH STARTS MUSIC
+========================================================= */
+
+tapOverlay.addEventListener(
+  "pointerdown",
+  function(event){
+
+    if(event.pointerType === "touch"){
+
+      startMusic();
+
+    }
+
+  },
+  {
+    passive:false
+  }
+);
+
+
+/* =========================================================
+   TOUCH BACKUP
+========================================================= */
+
+tapOverlay.addEventListener(
+  "touchstart",
+  function(event){
+
+    if(!invitationOpened){
+
+      startMusic();
+
+    }
+
+  },
+  {
+    passive:false
+  }
+);
+
+
+/* =========================================================
+   TAP TO OPEN
 ========================================================= */
 
 tapOverlay.addEventListener(
@@ -1366,7 +1407,6 @@ welcomeVideo.addEventListener(
 
 /* =========================================================
    MUSIC MUTE / UNMUTE
-   ICON IS ONLY FOR THIS
 ========================================================= */
 
 musicToggle.addEventListener(
@@ -1379,7 +1419,7 @@ musicToggle.addEventListener(
 
       music.muted = false;
 
-      musicToggle.textContent = "♪";
+      musicToggle.textContent = "♫";
 
       musicToggle.classList.remove("muted");
 
@@ -2006,5 +2046,3 @@ scratchCanvas.addEventListener(
 
 </body>
 </html>
-
-
